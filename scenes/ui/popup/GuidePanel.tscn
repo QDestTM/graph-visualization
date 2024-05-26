@@ -1,0 +1,517 @@
+[gd_scene load_steps=19 format=3 uid="uid://5actm4d4gjp8"]
+
+[ext_resource type="Theme" uid="uid://c1mx5kirbdjcn" path="res://resources/theme.tres" id="1_mtd2y"]
+[ext_resource type="Script" path="res://scripts/ui/popup/GuidePanel.gd" id="2_hjwig"]
+[ext_resource type="LabelSettings" uid="uid://dof3g3wmqie3i" path="res://resources/labels/title_label.tres" id="3_vr325"]
+[ext_resource type="LabelSettings" uid="uid://cyd1qhvyknw5j" path="res://resources/labels/subtitle_label.tres" id="5_j1muy"]
+[ext_resource type="Texture2D" uid="uid://s02mt3qriktp" path="res://resources/images/guide-0.png" id="6_hqiho"]
+[ext_resource type="LabelSettings" uid="uid://lppqpew8em23" path="res://resources/labels/guide_label.tres" id="7_6btil"]
+[ext_resource type="Texture2D" uid="uid://b8jkihofgb5oq" path="res://resources/images/guide-1.png" id="8_33nox"]
+[ext_resource type="Texture2D" uid="uid://dlbmlmhpsj287" path="res://resources/images/guide-9.png" id="9_gub51"]
+[ext_resource type="Texture2D" uid="uid://dlrd2ffim2uxx" path="res://resources/images/guide-2.png" id="9_ux2yt"]
+[ext_resource type="Texture2D" uid="uid://b2ulasmrcow2a" path="res://resources/images/guide-3.png" id="10_nlqw2"]
+[ext_resource type="Texture2D" uid="uid://cg8u5vluacbdn" path="res://resources/images/guide-4.png" id="11_gvhsf"]
+[ext_resource type="Texture2D" uid="uid://gd4hu87hcysf" path="res://resources/images/guide-5.png" id="12_72f71"]
+[ext_resource type="Texture2D" uid="uid://dewm37n0123yf" path="res://resources/images/guide-6.png" id="13_laf4b"]
+[ext_resource type="Texture2D" uid="uid://b06em2sl33ko7" path="res://resources/images/guide-7.png" id="14_4gsup"]
+[ext_resource type="Texture2D" uid="uid://ce6snwvvmcrnf" path="res://resources/images/guide-8.png" id="15_85es4"]
+
+[sub_resource type="Animation" id="Animation_18rec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContentRect/ContentPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContentRect/ContentPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i0ckw"]
+resource_name = "show_ui"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContentRect/ContentPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector2(0, 30), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContentRect/ContentPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y5kwv"]
+_data = {
+"RESET": SubResource("Animation_18rec"),
+"show_ui": SubResource("Animation_i0ckw")
+}
+
+[node name="GuidePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_mtd2y")
+script = ExtResource("2_hjwig")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y5kwv")
+}
+
+[node name="ContentRect" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = 80.0
+offset_right = 280.0
+offset_bottom = -79.9999
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="ContentRect" groups=["debug_node"]]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.247059, 0.490196, 1, 1)
+border_width = 2.0
+
+[node name="ContentPanel" type="Panel" parent="ContentRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_right = 560.0
+offset_bottom = 560.0
+theme_type_variation = &"GuideContentPanel"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ContentRect/ContentPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "interface"
+label_settings = ExtResource("3_vr325")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Guide-0" type="Panel" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1030)
+layout_mode = 2
+theme_type_variation = &"GuideContentSubPanel"
+
+[node name="Margins" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins"]
+layout_mode = 2
+
+[node name="Subtitle-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "1. Interaction mode UI"
+label_settings = ExtResource("5_j1muy")
+
+[node name="GuideImage-0" type="TextureRect" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("6_hqiho")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextMargins-0" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+
+[node name="GuideText" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-0"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "1. Selection Mode (1)
+2. Vertices Mode (2)
+3. Edges Mode (3)
+4. Just displays current mode."
+label_settings = ExtResource("7_6btil")
+
+[node name="Subtitle-1" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "2. Animation Player UI"
+label_settings = ExtResource("5_j1muy")
+
+[node name="GuideImage-1" type="TextureRect" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("8_33nox")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextMargins-1" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+
+[node name="GuideText" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-1"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "1. Animation Stop (Shift+P)
+2. Animation Step Back (Shift+Space)
+3. Animation Step Forward (Space)
+4. Animation Autoplay (Ctrl+P)
+5. Animation Play (P)
+6. Reset Entry (Shift + E)"
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
+
+[node name="Subtitle-2" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "3. Graph Control UI"
+label_settings = ExtResource("5_j1muy")
+
+[node name="SubContainer-2" type="HBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextMargins-2" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/SubContainer-2"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+
+[node name="GuideText" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/SubContainer-2/TextMargins-2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "1. Clean Graph (Ctrl + N)
+2. Save Graph (Ctrl + S)
+3. Load Graph (Ctrl + L)"
+label_settings = ExtResource("7_6btil")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="GuideImage-2" type="TextureRect" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/SubContainer-2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("9_gub51")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Subtitle-End" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "*The tooltips can be seen by simply holding the cursor over the element. (The vertices also contain hints)"
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
+
+[node name="Title-1" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "controls"
+label_settings = ExtResource("3_vr325")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Guide-1" type="Panel" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1350)
+layout_mode = 2
+theme_type_variation = &"GuideContentSubPanel"
+
+[node name="Margins" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins"]
+layout_mode = 2
+
+[node name="Subtitle-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "1. Place and Move Vertices"
+label_settings = ExtResource("5_j1muy")
+
+[node name="GuideImage-0" type="TextureRect" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("9_ux2yt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextMargins-0" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+
+[node name="GuideText-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer/TextMargins-0"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "To create Vertex, select \"Vertices Mode (2)\" and just click somewhere in the field. In \"Selection Mode (1)\" you can also move it by holding LMB."
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
+
+[node name="Subtitle-1" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "2. Delete Vertices"
+label_settings = ExtResource("5_j1muy")
+
+[node name="GuideImage-1" type="TextureRect" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("10_nlqw2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextMargins-1" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+
+[node name="GuideText-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer/TextMargins-1"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "If you want to delete a vertex, then go to \"Selection Mode (1)\", and while holding cursor at the vertex, press (Q), or move it to the bottom right corner. (The \"Trash\" icon will appears)"
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
+
+[node name="Subtitle-2" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "3. Connect Vertices"
+label_settings = ExtResource("5_j1muy")
+
+[node name="GuideImage-2" type="TextureRect" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("11_gvhsf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextMargins-2" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+
+[node name="GuideText-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer/TextMargins-2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "To connect vertices by edges, select \"Edges Mode (3)\", click on the first and than on the second vertex to connect, repeat this action to disconnect vertices. Click at the same vertex to cancel connection action."
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
+
+[node name="Subtitle-3" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "4. Editing Weights"
+label_settings = ExtResource("5_j1muy")
+
+[node name="GuideImage-3" type="TextureRect" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("12_72f71")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextMargins-3" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+
+[node name="GuideText-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer/TextMargins-3"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "To edit the weights of an edge, click on the number \"0\" on it, then enter a number in the range from 0 to 1000 (inclusive). To complete the entry, press Enter, or move the cursor away from the number."
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
+
+[node name="Subtitle-4" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "5. Set Graph Entry"
+label_settings = ExtResource("5_j1muy")
+
+[node name="GuideImage-4" type="TextureRect" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("13_laf4b")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextMargins-4" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+
+[node name="GuideText-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer/TextMargins-4"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "To set the entry vertex of the graph, select \"Selection Mode (1)\", and while hover over the vertex press (E). There can only be one entry vertex, so if you try to set a new, the old one will be reset.
+
+*You can undo and redo all of these actions, by using (Ctrl+Z) and (Ctrl+Shift+Z).
+*You can move camera, by using (W, S, D, A) keys and by RMB."
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
+
+[node name="Title-2" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "animation"
+label_settings = ExtResource("3_vr325")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Guide-2" type="Panel" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 970)
+layout_mode = 2
+theme_type_variation = &"GuideContentSubPanel"
+
+[node name="Margins" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins"]
+layout_mode = 2
+
+[node name="Subtitle-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "1. Animation Start"
+label_settings = ExtResource("5_j1muy")
+
+[node name="GuideImage-0" type="TextureRect" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins/VContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+texture = ExtResource("14_4gsup")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextMargins-0" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+
+[node name="GuideText" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins/VContainer/TextMargins-0"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Before starting the animation, you need to build a graph and update weights, be sure to set the entry point, and then click “Play (P)” on the Animation Player Panel."
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
+
+[node name="Subtitle-1" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "2. Animation Play and Stop"
+label_settings = ExtResource("5_j1muy")
+
+[node name="GuideImage-1" type="TextureRect" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins/VContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+texture = ExtResource("15_85es4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextMargins-1" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+
+[node name="GuideText" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins/VContainer/TextMargins-1"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Once animation started, you can use \"Step Back (Shift+Space)\" and \"Step Forward (Space)\" to play the animation, or use \"Autoplay (Ctrl + P)\" to play it automatically. In \"Autoplay\" mode, the \"Step Forward\" action will be automatically used every 1 second.
+
+To stop animation, press \"Stop (Shift+P)\" on Animation Player."
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finish"]
+[connection signal="resized" from="ContentRect" to="." method="_on_content_rect_resize"]

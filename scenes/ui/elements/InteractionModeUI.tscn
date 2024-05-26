@@ -1,0 +1,202 @@
+[gd_scene load_steps=16 format=3 uid="uid://ii070gb3xb3e"]
+
+[ext_resource type="Theme" uid="uid://c1mx5kirbdjcn" path="res://resources/theme.tres" id="1_dg0fe"]
+[ext_resource type="Script" path="res://scripts/ui/elements/InteractionModeUI.gd" id="2_au1g1"]
+[ext_resource type="Texture2D" uid="uid://po6jm26qq0jv" path="res://resources/icons/cursor.png" id="3_ymk3v"]
+[ext_resource type="StyleBox" uid="uid://k0x5p34cxebf" path="res://resources/styles/round_L_color_500.tres" id="4_lu64c"]
+[ext_resource type="StyleBox" uid="uid://b2nbewsc1lhm4" path="res://resources/styles/round_L_color_300.tres" id="5_s8fth"]
+[ext_resource type="Texture2D" uid="uid://ccws05r1ol1jc" path="res://resources/icons/vertex.png" id="6_v25x5"]
+[ext_resource type="StyleBox" uid="uid://rl3dbqswehws" path="res://resources/styles/round_R_color_500.tres" id="7_q0fft"]
+[ext_resource type="StyleBox" uid="uid://qjelh8l2lewc" path="res://resources/styles/round_R_color_300.tres" id="8_v0y2n"]
+[ext_resource type="Texture2D" uid="uid://brea8gunlpltk" path="res://resources/icons/edge.png" id="9_1o76d"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_605ye"]
+action = &"set_interaction_mode_select"
+
+[sub_resource type="Shortcut" id="Shortcut_tcigb"]
+events = [SubResource("InputEventAction_605ye")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_qvrk4"]
+action = &"set_interaction_mode_vertices"
+
+[sub_resource type="Shortcut" id="Shortcut_foxth"]
+events = [SubResource("InputEventAction_qvrk4")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_8dy8i"]
+action = &"set_interaction_mode_edges"
+
+[sub_resource type="Shortcut" id="Shortcut_3fb1g"]
+events = [SubResource("InputEventAction_8dy8i")]
+
+[node name="InteractionModeUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 270.0
+offset_bottom = 50.0
+theme = ExtResource("1_dg0fe")
+script = ExtResource("2_au1g1")
+metadata/_edit_horizontal_guides_ = [1185.0]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." groups=["debug_node"]]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+border_color = Color(0.247059, 0.490196, 1, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="DisplayPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 220.0
+offset_right = 270.0
+offset_bottom = 50.0
+theme_type_variation = &"InteractionModeDisplay"
+
+[node name="MarginContainer" type="MarginContainer" parent="DisplayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ModeTexture" type="TextureRect" parent="DisplayPanel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_ymk3v")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SelectionPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 200.0
+offset_bottom = 50.0
+theme_type_variation = &"InteractionModePanel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SelectionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.000106812
+offset_bottom = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="ModeSelect" type="Button" parent="SelectionPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Select Mode (1)"
+focus_mode = 0
+mouse_filter = 1
+theme_type_variation = &"InteractionModeButton"
+theme_override_styles/normal = ExtResource("4_lu64c")
+theme_override_styles/hover = ExtResource("4_lu64c")
+theme_override_styles/pressed = ExtResource("5_s8fth")
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_tcigb")
+shortcut_in_tooltip = false
+icon_alignment = 1
+expand_icon = true
+
+[node name="Margin" type="MarginContainer" parent="SelectionPanel/HBoxContainer/ModeSelect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"InteractionModeButtonIconMargins"
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Icon" type="TextureRect" parent="SelectionPanel/HBoxContainer/ModeSelect/Margin"]
+layout_mode = 2
+texture = ExtResource("3_ymk3v")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ModeVertices" type="Button" parent="SelectionPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Vertices Mode (2)"
+focus_mode = 0
+mouse_filter = 1
+theme_type_variation = &"InteractionModeButton"
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_foxth")
+shortcut_in_tooltip = false
+icon_alignment = 1
+expand_icon = true
+
+[node name="Margin" type="MarginContainer" parent="SelectionPanel/HBoxContainer/ModeVertices"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"InteractionModeButtonIconMargins"
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Icon" type="TextureRect" parent="SelectionPanel/HBoxContainer/ModeVertices/Margin"]
+layout_mode = 2
+texture = ExtResource("6_v25x5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ModeEdges" type="Button" parent="SelectionPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Edges Mode (3)"
+focus_mode = 0
+mouse_filter = 1
+theme_type_variation = &"InteractionModeButton"
+theme_override_styles/normal = ExtResource("7_q0fft")
+theme_override_styles/hover = ExtResource("7_q0fft")
+theme_override_styles/pressed = ExtResource("8_v0y2n")
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_3fb1g")
+shortcut_in_tooltip = false
+icon_alignment = 1
+expand_icon = true
+
+[node name="Margin" type="MarginContainer" parent="SelectionPanel/HBoxContainer/ModeEdges"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"InteractionModeButtonIconMargins"
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Icon" type="TextureRect" parent="SelectionPanel/HBoxContainer/ModeEdges/Margin"]
+layout_mode = 2
+texture = ExtResource("9_1o76d")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="SelectionPanel/HBoxContainer/ModeSelect" to="." method="set_mode_select"]
+[connection signal="pressed" from="SelectionPanel/HBoxContainer/ModeVertices" to="." method="set_mode_vertices"]
+[connection signal="pressed" from="SelectionPanel/HBoxContainer/ModeEdges" to="." method="set_mode_edges"]

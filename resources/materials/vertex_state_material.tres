@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d2xu6lbd12jea"]
+
+[ext_resource type="Shader" path="res://shaders/hollow_circle_shader.gdshader" id="1_sxe38"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_sxe38")
+shader_parameter/color = Color(0.4, 1, 0.501961, 1)
+shader_parameter/radius = 0.7
+shader_parameter/smoothing = 0.1

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://8jjtrqyrjrla"]
+
+[ext_resource type="Theme" uid="uid://c1mx5kirbdjcn" path="res://resources/theme.tres" id="1_rfsd3"]
+[ext_resource type="Texture2D" uid="uid://dkwqdvsycaaqy" path="res://resources/icons/settings.png" id="3_ysr82"]
+
+[node name="SettingsOpenButton" type="Button"]
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Open Settings"
+focus_mode = 0
+theme = ExtResource("1_rfsd3")
+theme_type_variation = &"SettingsOpenButton"
+metadata/_edit_use_anchors_ = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.247059, 0.490196, 1, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_ysr82")
+expand_mode = 1
+stretch_mode = 4

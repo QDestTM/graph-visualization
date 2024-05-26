@@ -1,0 +1,60 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://c1mx5kirbdjcn"]
+
+[ext_resource type="StyleBox" uid="uid://c4jmufkj5fvbx" path="res://resources/styles/color_500.tres" id="1_a0jim"]
+[ext_resource type="StyleBox" uid="uid://dci4q7t6ua07o" path="res://resources/styles/color_600.tres" id="1_nwgsw"]
+[ext_resource type="StyleBox" uid="uid://co3qrj65cu8xh" path="res://resources/styles/empty_style.tres" id="1_v3otw"]
+[ext_resource type="StyleBox" uid="uid://bsjw0e440lrcy" path="res://resources/styles/color_300.tres" id="2_pnisl"]
+[ext_resource type="StyleBox" uid="uid://dnqdh3oikwcwd" path="res://resources/styles/round_A_color_700.tres" id="4_p1egs"]
+[ext_resource type="StyleBox" uid="uid://cfk8dmlla6xb7" path="res://resources/styles/round_A_color_600.tres" id="5_01vl5"]
+[ext_resource type="StyleBox" uid="uid://d0w5ufwismtqh" path="res://resources/styles/round_A_color_500.tres" id="6_2v1xj"]
+[ext_resource type="StyleBox" uid="uid://30miio2x73cf" path="res://resources/styles/round_A_color_300.tres" id="7_u8xbe"]
+
+[resource]
+AlgorithmPlayerUIButton/base_type = &"Button"
+AlgorithmPlayerUIButton/styles/disabled = ExtResource("1_nwgsw")
+AlgorithmPlayerUIButton/styles/focus = ExtResource("1_v3otw")
+AlgorithmPlayerUIButton/styles/hover = ExtResource("1_a0jim")
+AlgorithmPlayerUIButton/styles/normal = ExtResource("1_a0jim")
+AlgorithmPlayerUIButton/styles/pressed = ExtResource("2_pnisl")
+EdgeLengthEdit/base_type = &"LineEdit"
+EdgeLengthEdit/colors/caret_color = Color(0.196078, 0.184314, 0.278431, 1)
+EdgeLengthEdit/colors/font_color = Color(0.196078, 0.184314, 0.278431, 1)
+EdgeLengthEdit/colors/font_placeholder_color = Color(0.196078, 0.184314, 0.278431, 0.705882)
+EdgeLengthEdit/colors/font_selected_color = Color(0, 0, 0, 1)
+EdgeLengthEdit/colors/font_uneditable_color = Color(0.196078, 0.184314, 0.278431, 1)
+EdgeLengthEdit/colors/selection_color = Color(0.815686, 0.854902, 0.972549, 1)
+EdgeLengthEdit/styles/focus = ExtResource("1_v3otw")
+EdgeLengthEdit/styles/normal = ExtResource("1_v3otw")
+EdgeLengthEdit/styles/read_only = ExtResource("1_v3otw")
+GuideContentPanel/base_type = &"Panel"
+GuideContentPanel/styles/panel = ExtResource("5_01vl5")
+GuideContentSubPanel/base_type = &"Panel"
+GuideContentSubPanel/styles/panel = ExtResource("4_p1egs")
+GuideOpenButton/base_type = &"Button"
+GuideOpenButton/styles/disabled = ExtResource("5_01vl5")
+GuideOpenButton/styles/focus = ExtResource("1_v3otw")
+GuideOpenButton/styles/hover = ExtResource("6_2v1xj")
+GuideOpenButton/styles/normal = ExtResource("6_2v1xj")
+GuideOpenButton/styles/pressed = ExtResource("7_u8xbe")
+InteractionModeButton/base_type = &"Button"
+InteractionModeButton/styles/disabled = ExtResource("1_v3otw")
+InteractionModeButton/styles/focus = ExtResource("1_v3otw")
+InteractionModeButton/styles/hover = ExtResource("1_a0jim")
+InteractionModeButton/styles/normal = ExtResource("1_a0jim")
+InteractionModeButton/styles/pressed = ExtResource("2_pnisl")
+InteractionModeDisplay/base_type = &"Panel"
+InteractionModeDisplay/styles/panel = ExtResource("4_p1egs")
+InteractionModePanel/base_type = &"Panel"
+InteractionModePanel/styles/panel = ExtResource("6_2v1xj")
+SettingsContentPanel/base_type = &"Panel"
+SettingsContentPanel/styles/panel = ExtResource("5_01vl5")
+SettingsContentSubPanel/base_type = &"Panel"
+SettingsContentSubPanel/styles/panel = ExtResource("4_p1egs")
+SettingsOpenButton/base_type = &"Button"
+SettingsOpenButton/styles/disabled = ExtResource("6_2v1xj")
+SettingsOpenButton/styles/focus = ExtResource("1_v3otw")
+SettingsOpenButton/styles/hover = ExtResource("6_2v1xj")
+SettingsOpenButton/styles/normal = ExtResource("6_2v1xj")
+SettingsOpenButton/styles/pressed = ExtResource("7_u8xbe")
+VertexDeleteArea/base_type = &"Panel"
+VertexDeleteArea/styles/panel = ExtResource("5_01vl5")

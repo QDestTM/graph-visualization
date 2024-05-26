@@ -1,0 +1,278 @@
+[gd_scene load_steps=23 format=3 uid="uid://cfr7flsaodgb6"]
+
+[ext_resource type="Script" path="res://scripts/ui/elements/GraphControlUI.gd" id="1_acscy"]
+[ext_resource type="StyleBox" uid="uid://c15joynb6gppa" path="res://resources/styles/round_U_color_500.tres" id="1_klsry"]
+[ext_resource type="StyleBox" uid="uid://cmildfuoqq1g0" path="res://resources/styles/round_U_color_300.tres" id="2_3j0lw"]
+[ext_resource type="StyleBox" uid="uid://d0w5ufwismtqh" path="res://resources/styles/round_A_color_500.tres" id="2_uwoyr"]
+[ext_resource type="Texture2D" uid="uid://bq5ckbuyjqmfr" path="res://resources/icons/newfile.png" id="3_seh3h"]
+[ext_resource type="StyleBox" uid="uid://30miio2x73cf" path="res://resources/styles/round_A_color_300.tres" id="3_sls1j"]
+[ext_resource type="StyleBox" uid="uid://c4jmufkj5fvbx" path="res://resources/styles/color_500.tres" id="4_4vbve"]
+[ext_resource type="Texture2D" uid="uid://lr17448e5ur" path="res://resources/icons/confirm.png" id="4_o217h"]
+[ext_resource type="StyleBox" uid="uid://bsjw0e440lrcy" path="res://resources/styles/color_300.tres" id="5_irvqh"]
+[ext_resource type="Texture2D" uid="uid://cfge2hwn2bu80" path="res://resources/icons/save.png" id="6_3vb1e"]
+[ext_resource type="StyleBox" uid="uid://bdrkqhg8lrtx4" path="res://resources/styles/round_D_color_500.tres" id="7_8lavg"]
+[ext_resource type="StyleBox" uid="uid://xdk4n1eys5mi" path="res://resources/styles/round_D_color_300.tres" id="8_l8dti"]
+[ext_resource type="Texture2D" uid="uid://cdem2mgwc0tch" path="res://resources/icons/load.png" id="9_2y1pn"]
+
+[sub_resource type="Animation" id="Animation_smagy"]
+resource_name = "show_confirm"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonConfirm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-60, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonConfirm:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qoss0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonConfirm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(50, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonConfirm:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_swj0f"]
+_data = {
+"RESET": SubResource("Animation_qoss0"),
+"show_confirm": SubResource("Animation_smagy")
+}
+
+[sub_resource type="InputEventAction" id="InputEventAction_v8dcf"]
+action = &"graph_new"
+
+[sub_resource type="Shortcut" id="Shortcut_hnr21"]
+events = [SubResource("InputEventAction_v8dcf")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_4u5qo"]
+action = &"graph_save"
+
+[sub_resource type="Shortcut" id="Shortcut_xglwu"]
+events = [SubResource("InputEventAction_4u5qo")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_beqit"]
+action = &"graph_load"
+
+[sub_resource type="Shortcut" id="Shortcut_dk7ak"]
+events = [SubResource("InputEventAction_beqit")]
+
+[node name="GraphControlUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 50.0
+offset_bottom = 180.0
+script = ExtResource("1_acscy")
+metadata/_edit_horizontal_guides_ = [60.0, 120.0]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_swj0f")
+}
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.247059, 0.490196, 1, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="ConfirmTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="ButtonConfirm" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_right = 50.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Confirm New"
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/normal = ExtResource("2_uwoyr")
+theme_override_styles/hover = ExtResource("2_uwoyr")
+theme_override_styles/pressed = ExtResource("3_sls1j")
+theme_override_styles/disabled = ExtResource("2_uwoyr")
+keep_pressed_outside = true
+shortcut_in_tooltip = false
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="ButtonConfirm"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 8
+
+[node name="Icon" type="TextureRect" parent="ButtonConfirm/Margin"]
+layout_mode = 2
+texture = ExtResource("4_o217h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_right = 50.0
+offset_bottom = 180.0
+theme_override_constants/separation = 0
+
+[node name="ButtonClean" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Create New (Ctrl + N)"
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/normal = ExtResource("1_klsry")
+theme_override_styles/hover = ExtResource("1_klsry")
+theme_override_styles/pressed = ExtResource("2_3j0lw")
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_hnr21")
+shortcut_in_tooltip = false
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="VBoxContainer/ButtonClean"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 8
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/ButtonClean/Margin"]
+layout_mode = 2
+texture = ExtResource("3_seh3h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonSave" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Save Graph (Ctrl + S)"
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/normal = ExtResource("4_4vbve")
+theme_override_styles/hover = ExtResource("4_4vbve")
+theme_override_styles/pressed = ExtResource("5_irvqh")
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_xglwu")
+shortcut_in_tooltip = false
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="VBoxContainer/ButtonSave"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 8
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/ButtonSave/Margin"]
+layout_mode = 2
+texture = ExtResource("6_3vb1e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonLoad" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Load Graph (Ctrl + L)"
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/normal = ExtResource("7_8lavg")
+theme_override_styles/hover = ExtResource("7_8lavg")
+theme_override_styles/pressed = ExtResource("8_l8dti")
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_dk7ak")
+shortcut_in_tooltip = false
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="VBoxContainer/ButtonLoad"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 8
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/ButtonLoad/Margin"]
+layout_mode = 2
+texture = ExtResource("9_2y1pn")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="timeout" from="ConfirmTimer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="ButtonConfirm" to="." method="_on_button_confirm_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonClean" to="." method="_on_button_clean_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonSave" to="." method="_on_button_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonLoad" to="." method="_on_button_load_pressed"]

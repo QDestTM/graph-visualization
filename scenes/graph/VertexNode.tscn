@@ -1,0 +1,265 @@
+[gd_scene load_steps=15 format=3 uid="uid://ccr8nxhgiimk6"]
+
+[ext_resource type="Script" path="res://scripts/graph/VertexNode.gd" id="1_1mk0k"]
+[ext_resource type="LabelSettings" uid="uid://f5aype46siqw" path="res://resources/labels/debug_label.tres" id="2_cgod6"]
+[ext_resource type="Material" uid="uid://bltdyudigaw1y" path="res://resources/materials/vertex_material.tres" id="2_dwds5"]
+
+[sub_resource type="Animation" id="Animation_qgnaw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RectangleArea:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.584314, 0.666667, 0.933333, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RectangleArea/DistanceLabel:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lkuk4"]
+resource_name = "algo_processed"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RectangleArea:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.329412, 0.945098, 0.65098, 1), Color(0.4758, 0.50935, 0.61, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gggx5"]
+resource_name = "algo_select"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RectangleArea:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(0.584314, 0.666667, 0.933333, 1), Color(0.329412, 0.945098, 0.65098, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vvo0u"]
+resource_name = "algo_unused"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RectangleArea:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.584314, 0.666667, 0.933333, 1), Color(0.4758, 0.50935, 0.61, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b5jxc"]
+resource_name = "deletion"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RectangleArea:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(0.815686, 0.196078, 0.34902, 1), Color(0.815686, 0.196078, 0.34902, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RectangleArea/DistanceLabel:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n486g"]
+resource_name = "hover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RectangleArea:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.585956, 0.66647, 0.932772, 1), Color(0.815686, 0.854902, 0.972549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_biitw"]
+resource_name = "reset"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RectangleArea:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.584314, 0.666667, 0.933333, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4plgo"]
+resource_name = "special"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RectangleArea:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Color(0.584314, 0.666667, 0.933333, 1), Color(0.815686, 0.196078, 0.34902, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6akdc"]
+resource_name = "special_hover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RectangleArea:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(0.815686, 0.196078, 0.34902, 1), Color(0.815686, 0.854902, 0.972549, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_paamj"]
+_data = {
+"RESET": SubResource("Animation_qgnaw"),
+"algo_processed": SubResource("Animation_lkuk4"),
+"algo_select": SubResource("Animation_gggx5"),
+"algo_unused": SubResource("Animation_vvo0u"),
+"deletion": SubResource("Animation_b5jxc"),
+"hover": SubResource("Animation_n486g"),
+"reset": SubResource("Animation_biitw"),
+"special": SubResource("Animation_4plgo"),
+"special_hover": SubResource("Animation_6akdc")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_k0sf7"]
+font_size = 20
+
+[node name="VertexNode" type="Node2D" groups=["vertices"]]
+z_index = 2
+z_as_relative = false
+script = ExtResource("1_1mk0k")
+metadata/_edit_horizontal_guides_ = [-25.0, 25.0]
+metadata/_edit_vertical_guides_ = [-25.0, 25.0]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_paamj")
+}
+
+[node name="ReferenceArea" type="ReferenceRect" parent="." groups=["debug_node"]]
+z_index = 1
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+mouse_filter = 2
+border_width = 2.0
+editor_only = false
+
+[node name="IDLabel" type="Label" parent="ReferenceArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = 25.0
+offset_right = 25.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("2_cgod6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RectangleArea" type="ColorRect" parent="."]
+material = ExtResource("2_dwds5")
+clip_contents = true
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+tooltip_text = "(Q) Delete
+(E) Set Entry
+Need's (Select Mode)"
+
+[node name="DistanceLabel" type="Label" parent="RectangleArea"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -15.0
+offset_right = 25.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "?"
+label_settings = SubResource("LabelSettings_k0sf7")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Center" type="Marker2D" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finish"]
+[connection signal="gui_input" from="RectangleArea" to="." method="_on_area_input"]
+[connection signal="mouse_entered" from="RectangleArea" to="." method="_on_mouse_enter"]
+[connection signal="mouse_exited" from="RectangleArea" to="." method="_on_mouse_exit"]

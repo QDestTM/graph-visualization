@@ -1,0 +1,503 @@
+[gd_scene load_steps=17 format=3 uid="uid://cwoa0i8oounv5"]
+
+[ext_resource type="Script" path="res://scripts/ui/UICanvas.gd" id="1_3kym6"]
+[ext_resource type="PackedScene" uid="uid://ii070gb3xb3e" path="res://scenes/ui/elements/InteractionModeUI.tscn" id="2_ujk6y"]
+[ext_resource type="PackedScene" uid="uid://do7sd6e5va2sy" path="res://scenes/ui/VertexDeleteArea.tscn" id="3_kjthu"]
+[ext_resource type="PackedScene" uid="uid://cfiecehh7o68c" path="res://scenes/ui/elements/AlgorithmPlayerUI.tscn" id="3_vys7l"]
+[ext_resource type="PackedScene" uid="uid://dmrrfvf2cmm7v" path="res://scenes/ui/buttons/GuideOpenButton.tscn" id="4_bjoux"]
+[ext_resource type="PackedScene" uid="uid://cfr7flsaodgb6" path="res://scenes/ui/elements/GraphControlUI.tscn" id="5_g68ah"]
+[ext_resource type="PackedScene" uid="uid://ivltntlrwygb" path="res://scenes/ui/elements/GraphStatsUI.tscn" id="6_rxao0"]
+[ext_resource type="PackedScene" uid="uid://8jjtrqyrjrla" path="res://scenes/ui/buttons/SettingsOpenButton.tscn" id="7_0c7sb"]
+[ext_resource type="PackedScene" uid="uid://bi5ly6own2yuw" path="res://scenes/ui/elements/UserMessagesUI.tscn" id="8_2xy5o"]
+[ext_resource type="PackedScene" uid="uid://5actm4d4gjp8" path="res://scenes/ui/popup/GuidePanel.tscn" id="10_bylf0"]
+[ext_resource type="PackedScene" uid="uid://cv3ajva86exwg" path="res://scenes/ui/popup/SettingsPanel.tscn" id="11_r4l87"]
+
+[sub_resource type="Animation" id="Animation_gbjb4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI-ElementContainer-2/AlgorithmPlayerUI:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI-ElementContainer-1/InteractionModeUI:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI-ElementContainer-3/GuideOpenButton:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 70)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI-ElementContainer-4/GraphControlUI:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI-ElementContainer-5/GraphStatsUI:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(140, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI-ElementContainer-6/SettingsOpenButton:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(50, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("OverlayContent/Background:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ea3t5"]
+resource_name = "gui_fading"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI-ElementContainer-2/AlgorithmPlayerUI:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 70), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI-ElementContainer-1/InteractionModeUI:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 80)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI-ElementContainer-3/GuideOpenButton:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 70), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI-ElementContainer-4/GraphControlUI:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(65, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI-ElementContainer-5/GraphStatsUI:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(140, 0), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI-ElementContainer-6/SettingsOpenButton:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(50, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gcfvf"]
+resource_name = "playmode_gui_fading"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI-ElementContainer-1/InteractionModeUI:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI-ElementContainer-3/GuideOpenButton:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 70), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI-ElementContainer-4/GraphControlUI:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(65, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI-ElementContainer-6/SettingsOpenButton:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(50, 0), Vector2(50, 60)]
+}
+
+[sub_resource type="Animation" id="Animation_2dw2a"]
+resource_name = "popup_show"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OverlayContent/Background:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.392157)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_luwyi"]
+_data = {
+"RESET": SubResource("Animation_gbjb4"),
+"gui_fading": SubResource("Animation_ea3t5"),
+"playmode_gui_fading": SubResource("Animation_gcfvf"),
+"popup_show": SubResource("Animation_2dw2a")
+}
+
+[node name="UICanvas" type="CanvasLayer"]
+script = ExtResource("1_3kym6")
+metadata/_edit_horizontal_guides_ = [15.0, 705.0]
+metadata/_edit_vertical_guides_ = [1265.0, 20.0]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_luwyi")
+}
+
+[node name="InputArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="UI-ElementContainer-1" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -65.0
+offset_right = 290.0
+offset_bottom = 65.0
+grow_vertical = 0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="UI-ElementContainer-1" groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.400485, 0.556547, 0.620921, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="InteractionModeUI" parent="UI-ElementContainer-1" instance=ExtResource("2_ujk6y")]
+layout_mode = 1
+
+[node name="UI-ElementContainer-2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = -55.0
+offset_right = 380.0
+offset_bottom = 65.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="UI-ElementContainer-2" groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.400485, 0.556547, 0.620921, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="AlgorithmPlayerUI" parent="UI-ElementContainer-2" instance=ExtResource("3_vys7l")]
+offset_top = 70.0
+offset_bottom = 120.0
+
+[node name="UI-ElementContainer-3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -65.0
+offset_top = -55.0
+offset_right = -15.0
+offset_bottom = 65.0
+grow_horizontal = 0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="UI-ElementContainer-3" groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.400485, 0.556547, 0.620921, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="GuideOpenButton" parent="UI-ElementContainer-3" instance=ExtResource("4_bjoux")]
+layout_mode = 0
+offset_top = 70.0
+offset_bottom = 120.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="UI-ElementContainer-4" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -65.0
+offset_top = 120.0
+offset_right = 50.0
+offset_bottom = 300.0
+grow_horizontal = 0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="UI-ElementContainer-4" groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.400485, 0.556547, 0.620921, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="GraphControlUI" parent="UI-ElementContainer-4" instance=ExtResource("5_g68ah")]
+
+[node name="UI-ElementContainer-5" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -120.0
+offset_top = 80.0
+offset_right = 140.0
+offset_bottom = 195.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="UI-ElementContainer-5" groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.400485, 0.556547, 0.620921, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="GraphStatsUI" parent="UI-ElementContainer-5" instance=ExtResource("6_rxao0")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_right = 260.0
+grow_vertical = 0
+
+[node name="UI-ElementContainer-6" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -105.0
+offset_right = 50.0
+offset_bottom = -75.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="UI-ElementContainer-6" groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.400485, 0.556547, 0.620921, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="SettingsOpenButton" parent="UI-ElementContainer-6" instance=ExtResource("7_0c7sb")]
+layout_mode = 1
+offset_left = 50.0
+offset_right = 80.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="UserMessagesUI" parent="." instance=ExtResource("8_2xy5o")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -400.0
+offset_top = 15.0
+offset_right = -80.0
+offset_bottom = 65.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="ExtraLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="VertexDeleteArea" parent="ExtraLayer" instance=ExtResource("3_kjthu")]
+metadata/_edit_lock_ = true
+
+[node name="OverlayContent" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Background" type="ColorRect" parent="OverlayContent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="GuidePanel" parent="OverlayContent" instance=ExtResource("10_bylf0")]
+visible = false
+layout_mode = 1
+
+[node name="SettingsPanel" parent="OverlayContent" instance=ExtResource("11_r4l87")]
+visible = false
+layout_mode = 1
+
+[connection signal="popup_panel_hide" from="." to="OverlayContent/GuidePanel" method="_on_popup_panel_hide"]
+[connection signal="popup_panel_hide" from="." to="OverlayContent/SettingsPanel" method="_on_popup_panel_hide"]
+[connection signal="popup_panel_show" from="." to="OverlayContent/GuidePanel" method="_on_popup_panel_show"]
+[connection signal="popup_panel_show" from="." to="OverlayContent/SettingsPanel" method="_on_popup_panel_show"]
+[connection signal="gui_input" from="InputArea" to="." method="_on_area_input"]
+[connection signal="pressed" from="UI-ElementContainer-3/GuideOpenButton" to="." method="_on_guide_open_pressed"]
+[connection signal="pressed" from="UI-ElementContainer-6/SettingsOpenButton" to="." method="_on_settings_open_pressed"]
+[connection signal="gui_input" from="OverlayContent/Background" to="." method="_on_popup_background_input"]

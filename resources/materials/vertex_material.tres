@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bltdyudigaw1y"]
+
+[ext_resource type="Shader" path="res://shaders/vertex_draw.gdshader" id="1_kqrku"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_kqrku")
+shader_parameter/color = Color(0.584314, 0.666667, 0.933333, 1)

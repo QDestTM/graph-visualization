@@ -1,0 +1,283 @@
+[gd_scene load_steps=18 format=3 uid="uid://cv3ajva86exwg"]
+
+[ext_resource type="Theme" uid="uid://c1mx5kirbdjcn" path="res://resources/theme.tres" id="1_qweqe"]
+[ext_resource type="Script" path="res://scripts/ui/popup/SettingsPanel.gd" id="2_asmtl"]
+[ext_resource type="LabelSettings" uid="uid://dof3g3wmqie3i" path="res://resources/labels/title_label.tres" id="3_elyxl"]
+[ext_resource type="LabelSettings" uid="uid://lppqpew8em23" path="res://resources/labels/guide_label.tres" id="4_sbpsr"]
+[ext_resource type="StyleBox" uid="uid://k0x5p34cxebf" path="res://resources/styles/round_L_color_500.tres" id="5_4bttg"]
+[ext_resource type="StyleBox" uid="uid://b2nbewsc1lhm4" path="res://resources/styles/round_L_color_300.tres" id="6_om4x2"]
+[ext_resource type="StyleBox" uid="uid://ds36bm3uqlgn" path="res://resources/styles/round_L_color_600.tres" id="7_iqo3m"]
+[ext_resource type="StyleBox" uid="uid://co3qrj65cu8xh" path="res://resources/styles/empty_style.tres" id="8_4yg8x"]
+[ext_resource type="StyleBox" uid="uid://c4jmufkj5fvbx" path="res://resources/styles/color_500.tres" id="9_v2hxe"]
+[ext_resource type="StyleBox" uid="uid://bsjw0e440lrcy" path="res://resources/styles/color_300.tres" id="10_nweg0"]
+[ext_resource type="StyleBox" uid="uid://dci4q7t6ua07o" path="res://resources/styles/color_600.tres" id="11_j8kuw"]
+[ext_resource type="StyleBox" uid="uid://rl3dbqswehws" path="res://resources/styles/round_R_color_500.tres" id="12_00wyo"]
+[ext_resource type="StyleBox" uid="uid://qjelh8l2lewc" path="res://resources/styles/round_R_color_300.tres" id="13_fo65c"]
+[ext_resource type="StyleBox" uid="uid://cwuy5n3j3d2wv" path="res://resources/styles/round_R_color_600.tres" id="14_xxtfe"]
+
+[sub_resource type="Animation" id="Animation_snt42"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContentRect/ContentPanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContentRect/ContentPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vxb2b"]
+resource_name = "show_ui"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContentRect/ContentPanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContentRect/ContentPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector2(0, 30), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_orvs3"]
+_data = {
+"RESET": SubResource("Animation_snt42"),
+"show_ui": SubResource("Animation_vxb2b")
+}
+
+[node name="SettingsPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_qweqe")
+script = ExtResource("2_asmtl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_orvs3")
+}
+
+[node name="ContentRect" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.49
+anchor_right = 0.5
+anchor_bottom = 0.49
+offset_left = -200.0
+offset_top = -127.8
+offset_right = 200.0
+offset_bottom = 128.2
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="ContentRect" groups=["debug_node"]]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.247059, 0.490196, 1, 1)
+border_width = 2.0
+
+[node name="ContentPanel" type="Panel" parent="ContentRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_right = 400.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"SettingsContentPanel"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ContentRect/ContentPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Animation"
+label_settings = ExtResource("3_elyxl")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Settings-0" type="Panel" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+theme_type_variation = &"SettingsContentSubPanel"
+
+[node name="Margins" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins"]
+layout_mode = 2
+
+[node name="SpeedScale" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale"]
+layout_mode = 2
+
+[node name="GuideText" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Speed Scale"
+label_settings = ExtResource("4_sbpsr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Scale-1x" type="Button" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Normal Speed"
+theme_override_styles/normal = ExtResource("5_4bttg")
+theme_override_styles/hover = ExtResource("5_4bttg")
+theme_override_styles/pressed = ExtResource("6_om4x2")
+theme_override_styles/disabled = ExtResource("7_iqo3m")
+theme_override_styles/focus = ExtResource("8_4yg8x")
+disabled = true
+text = "1x"
+
+[node name="Scale-2x" type="Button" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "2x Speed"
+theme_override_styles/normal = ExtResource("9_v2hxe")
+theme_override_styles/hover = ExtResource("9_v2hxe")
+theme_override_styles/pressed = ExtResource("10_nweg0")
+theme_override_styles/disabled = ExtResource("11_j8kuw")
+theme_override_styles/focus = ExtResource("8_4yg8x")
+text = "2x"
+
+[node name="Scale-3x" type="Button" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "3x Speed"
+theme_override_styles/normal = ExtResource("9_v2hxe")
+theme_override_styles/hover = ExtResource("9_v2hxe")
+theme_override_styles/pressed = ExtResource("10_nweg0")
+theme_override_styles/disabled = ExtResource("11_j8kuw")
+theme_override_styles/focus = ExtResource("8_4yg8x")
+text = "3x"
+
+[node name="Scale-4x" type="Button" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "4x Speed"
+theme_override_styles/normal = ExtResource("9_v2hxe")
+theme_override_styles/hover = ExtResource("9_v2hxe")
+theme_override_styles/pressed = ExtResource("10_nweg0")
+theme_override_styles/disabled = ExtResource("11_j8kuw")
+theme_override_styles/focus = ExtResource("8_4yg8x")
+text = "4x"
+
+[node name="Scale-5x" type="Button" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "5x Speed"
+theme_override_styles/normal = ExtResource("12_00wyo")
+theme_override_styles/hover = ExtResource("12_00wyo")
+theme_override_styles/pressed = ExtResource("13_fo65c")
+theme_override_styles/disabled = ExtResource("14_xxtfe")
+theme_override_styles/focus = ExtResource("8_4yg8x")
+text = "5x"
+
+[node name="Note" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "*Be prepared for possible visual glitches and maybe lags."
+label_settings = ExtResource("4_sbpsr")
+autowrap_mode = 2
+
+[node name="AnimationSkip" type="CheckBox" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Noooooooooo!"
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = ExtResource("8_4yg8x")
+text = "Animation Skip"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finish"]
+[connection signal="resized" from="ContentRect" to="." method="_on_content_rect_resize"]
+[connection signal="pressed" from="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer/Scale-1x" to="." method="_on_anim_speed_scale_1x_pressed"]
+[connection signal="pressed" from="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer/Scale-2x" to="." method="_on_anim_speed_scale_2x_pressed"]
+[connection signal="pressed" from="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer/Scale-3x" to="." method="_on_anim_speed_scale_3x_pressed"]
+[connection signal="pressed" from="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer/Scale-4x" to="." method="_on_anim_speed_scale_4x_pressed"]
+[connection signal="pressed" from="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer/Scale-5x" to="." method="_on_anim_speed_scale_5x_pressed"]
+[connection signal="toggled" from="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/AnimationSkip" to="." method="_on_animation_skip_toggled"]

@@ -1,0 +1,382 @@
+[gd_scene load_steps=36 format=3 uid="uid://cfiecehh7o68c"]
+
+[ext_resource type="Theme" uid="uid://c1mx5kirbdjcn" path="res://resources/theme.tres" id="1_r882e"]
+[ext_resource type="Script" path="res://scripts/ui/elements/AlgorithmPlayerUI.gd" id="2_7hv4u"]
+[ext_resource type="StyleBox" uid="uid://k0x5p34cxebf" path="res://resources/styles/round_L_color_500.tres" id="2_be44x"]
+[ext_resource type="StyleBox" uid="uid://b2nbewsc1lhm4" path="res://resources/styles/round_L_color_300.tres" id="3_51rpb"]
+[ext_resource type="StyleBox" uid="uid://ds36bm3uqlgn" path="res://resources/styles/round_L_color_600.tres" id="4_21cis"]
+[ext_resource type="StyleBox" uid="uid://rl3dbqswehws" path="res://resources/styles/round_R_color_500.tres" id="5_l7k02"]
+[ext_resource type="StyleBox" uid="uid://qjelh8l2lewc" path="res://resources/styles/round_R_color_300.tres" id="6_1w7tm"]
+[ext_resource type="Texture2D" uid="uid://bwjo5sg3w0aec" path="res://resources/icons/stop.png" id="6_olivu"]
+[ext_resource type="Texture2D" uid="uid://cmbhbbnstrb5y" path="res://resources/icons/back.png" id="7_75fpo"]
+[ext_resource type="StyleBox" uid="uid://cwuy5n3j3d2wv" path="res://resources/styles/round_R_color_600.tres" id="7_rrtpx"]
+[ext_resource type="Texture2D" uid="uid://digcrl71a1mwk" path="res://resources/icons/autoplay.png" id="8_aq3ji"]
+[ext_resource type="Shader" path="res://shaders/hollow_circle_shader.gdshader" id="9_gmbrd"]
+[ext_resource type="Texture2D" uid="uid://d3y615bcrstn" path="res://resources/icons/play.png" id="9_pfivo"]
+[ext_resource type="StyleBox" uid="uid://d0w5ufwismtqh" path="res://resources/styles/round_A_color_500.tres" id="10_pske2"]
+[ext_resource type="StyleBox" uid="uid://cfk8dmlla6xb7" path="res://resources/styles/round_A_color_600.tres" id="11_jun10"]
+[ext_resource type="StyleBox" uid="uid://30miio2x73cf" path="res://resources/styles/round_A_color_300.tres" id="11_vtw16"]
+[ext_resource type="PackedScene" uid="uid://knso0i35ye1u" path="res://scenes/graph/VertexEntry.tscn" id="13_una0m"]
+
+[sub_resource type="Animation" id="Animation_w2gkf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonResetEntry/Margin/Icon:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonResetEntry/Margin/Icon:material:shader_parameter/color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.4, 1, 0.501961, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j0ao1"]
+resource_name = "no_both"
+length = 0.96
+step = 0.24
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonResetEntry/Margin/Icon:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.24, 0.48, 0.72, 0.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.7, 0.6, 0.7, 0.6, 0.7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonResetEntry/Margin/Icon:material:shader_parameter/color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.24, 0.48, 0.72, 0.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.4, 1, 0.501961, 1), Color(1, 0.419608, 0.419608, 1), Color(0.4, 1, 0.501961, 1), Color(1, 0.419608, 0.419608, 1), Color(0.4, 1, 0.501961, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tonr1"]
+resource_name = "no_entry"
+length = 0.96
+step = 0.24
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonResetEntry/Margin/Icon:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.24, 0.48, 0.72, 0.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.7, 0.6, 0.7, 0.6, 0.7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonResetEntry/Margin/Icon:material:shader_parameter/color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.24, 0.48, 0.72, 0.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.4, 1, 0.501961, 1), Color(1, 0.419608, 0.419608, 1), Color(0.4, 1, 0.501961, 1), Color(1, 0.419608, 0.419608, 1), Color(0.4, 1, 0.501961, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hcedo"]
+resource_name = "no_exit"
+length = 0.96
+step = 0.24
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ai07q"]
+_data = {
+"RESET": SubResource("Animation_w2gkf"),
+"no_both": SubResource("Animation_j0ao1"),
+"no_entry": SubResource("Animation_tonr1"),
+"no_exit": SubResource("Animation_hcedo")
+}
+
+[sub_resource type="InputEventAction" id="InputEventAction_n1haq"]
+action = &"algorithm_stop"
+
+[sub_resource type="Shortcut" id="Shortcut_3cdyx"]
+events = [SubResource("InputEventAction_n1haq")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_rp8f7"]
+action = &"algorithm_step_back"
+
+[sub_resource type="Shortcut" id="Shortcut_k60hp"]
+events = [SubResource("InputEventAction_rp8f7")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_ocxjg"]
+action = &"algorithm_step_front"
+
+[sub_resource type="Shortcut" id="Shortcut_0fbfy"]
+events = [SubResource("InputEventAction_ocxjg")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_xuiah"]
+action = &"algorithm_autoplay"
+
+[sub_resource type="Shortcut" id="Shortcut_fr8st"]
+events = [SubResource("InputEventAction_xuiah")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_if4sj"]
+action = &"algorithm_play"
+
+[sub_resource type="Shortcut" id="Shortcut_l8jdl"]
+events = [SubResource("InputEventAction_if4sj")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_ufsaq"]
+action = &"algorithm_reset_entry"
+
+[sub_resource type="Shortcut" id="Shortcut_tv7rq"]
+events = [SubResource("InputEventAction_ufsaq")]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0fw3s"]
+resource_local_to_scene = true
+shader = ExtResource("9_gmbrd")
+shader_parameter/color = Color(0.4, 1, 0.501961, 1)
+shader_parameter/radius = 0.7
+shader_parameter/smoothing = 0.07
+
+[node name="AlgorithmPlayerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 50.0
+theme = ExtResource("1_r882e")
+script = ExtResource("2_7hv4u")
+
+[node name="AutoPlayTimer" type="Timer" parent="."]
+wait_time = 1.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ai07q")
+}
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." groups=["debug_node"]]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.247059, 0.490196, 1, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_right = 290.0
+offset_bottom = 50.0
+theme_override_constants/separation = 0
+
+[node name="ButtonStop" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Stop (Shift + P)"
+focus_mode = 0
+theme_type_variation = &"AlgorithmPlayerUIButton"
+theme_override_styles/normal = ExtResource("2_be44x")
+theme_override_styles/hover = ExtResource("2_be44x")
+theme_override_styles/pressed = ExtResource("3_51rpb")
+theme_override_styles/disabled = ExtResource("4_21cis")
+disabled = true
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_3cdyx")
+shortcut_in_tooltip = false
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="ButtonsContainer/ButtonStop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 0
+
+[node name="Icon" type="TextureRect" parent="ButtonsContainer/ButtonStop/Margin"]
+layout_mode = 2
+texture = ExtResource("6_olivu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonStepBack" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Step Back (Shift + Space)"
+focus_mode = 0
+theme_type_variation = &"AlgorithmPlayerUIButton"
+disabled = true
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_k60hp")
+shortcut_in_tooltip = false
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="ButtonsContainer/ButtonStepBack"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="ButtonsContainer/ButtonStepBack/Margin"]
+layout_mode = 2
+texture = ExtResource("7_75fpo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonStepFront" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Step Forward (Space)"
+focus_mode = 0
+theme_type_variation = &"AlgorithmPlayerUIButton"
+disabled = true
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_0fbfy")
+shortcut_in_tooltip = false
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="ButtonsContainer/ButtonStepFront"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="ButtonsContainer/ButtonStepFront/Margin"]
+layout_mode = 2
+texture = ExtResource("7_75fpo")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="ButtonAutoPlay" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Auto Play (Ctrl + P)"
+focus_mode = 0
+theme_type_variation = &"AlgorithmPlayerUIButton"
+disabled = true
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_fr8st")
+shortcut_in_tooltip = false
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="ButtonsContainer/ButtonAutoPlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="ButtonsContainer/ButtonAutoPlay/Margin"]
+layout_mode = 2
+texture = ExtResource("8_aq3ji")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonPlay" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Play (P)"
+focus_mode = 0
+theme_type_variation = &"AlgorithmPlayerUIButton"
+theme_override_styles/normal = ExtResource("5_l7k02")
+theme_override_styles/hover = ExtResource("5_l7k02")
+theme_override_styles/pressed = ExtResource("6_1w7tm")
+theme_override_styles/disabled = ExtResource("7_rrtpx")
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_l8jdl")
+shortcut_in_tooltip = false
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="ButtonsContainer/ButtonPlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Icon" type="TextureRect" parent="ButtonsContainer/ButtonPlay/Margin"]
+layout_mode = 2
+texture = ExtResource("9_pfivo")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ButtonResetEntry" type="Button" parent="."]
+layout_mode = 2
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 50.0
+size_flags_horizontal = 3
+tooltip_text = "Reset Entry (Shift + E)"
+focus_mode = 0
+theme_type_variation = &"AlgorithmPlayerUIButton"
+theme_override_styles/normal = ExtResource("10_pske2")
+theme_override_styles/hover = ExtResource("10_pske2")
+theme_override_styles/pressed = ExtResource("11_vtw16")
+theme_override_styles/disabled = ExtResource("11_jun10")
+disabled = true
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_tv7rq")
+shortcut_in_tooltip = false
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="ButtonResetEntry"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Icon" parent="ButtonResetEntry/Margin" instance=ExtResource("13_una0m")]
+material = SubResource("ShaderMaterial_0fw3s")
+layout_mode = 2
+_gui_mode = true
+
+[connection signal="timeout" from="AutoPlayTimer" to="." method="_on_auto_play_timer_timeout"]
+[connection signal="pressed" from="ButtonsContainer/ButtonStop" to="." method="_on_stop_press"]
+[connection signal="pressed" from="ButtonsContainer/ButtonStepBack" to="." method="_on_step_back_press"]
+[connection signal="pressed" from="ButtonsContainer/ButtonStepFront" to="." method="_on_step_front_press"]
+[connection signal="pressed" from="ButtonsContainer/ButtonAutoPlay" to="." method="_on_auto_play_press"]
+[connection signal="pressed" from="ButtonsContainer/ButtonPlay" to="." method="_on_play_press"]
+[connection signal="pressed" from="ButtonResetEntry" to="." method="_on_reset_entry_press"]

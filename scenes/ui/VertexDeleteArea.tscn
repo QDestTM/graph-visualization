@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://do7sd6e5va2sy"]
+
+[ext_resource type="Theme" uid="uid://c1mx5kirbdjcn" path="res://resources/theme.tres" id="1_t15ke"]
+[ext_resource type="Script" path="res://scripts/ui/VertexDeleteArea.gd" id="2_klbtf"]
+[ext_resource type="Texture2D" uid="uid://b6464ljtq1k1v" path="res://resources/icons/delete.png" id="2_m0ggd"]
+
+[sub_resource type="Animation" id="Animation_0vign"]
+resource_name = "fade_panel"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 80), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6i56d"]
+_data = {
+"fade_panel": SubResource("Animation_0vign")
+}
+
+[node name="VertexDeleteArea" type="Control"]
+layout_mode = 3
+anchor_left = 1.0
+anchor_top = 0.993
+anchor_right = 1.0
+anchor_bottom = 0.993
+offset_left = -75.0002
+offset_top = -69.9603
+offset_right = -15.0002
+offset_bottom = 70.0416
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("2_klbtf")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_horizontal_guides_ = [785.0, 705.0, 645.0, 725.0]
+metadata/_edit_vertical_guides_ = [1265.0, 1205.0]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AreaPanel")
+libraries = {
+"": SubResource("AnimationLibrary_6i56d")
+}
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.811765, 0.258824, 0.764706, 1)
+editor_only = false
+
+[node name="AreaPanel" type="Panel" parent="."]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.428567
+offset_left = -0.000244141
+offset_top = 79.9998
+offset_right = -0.000244141
+offset_bottom = 79.9998
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_t15ke")
+theme_type_variation = &"VertexDeleteArea"
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="AreaPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="AreaPanel/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_m0ggd")
+expand_mode = 1
+stretch_mode = 4

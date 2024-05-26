@@ -1,0 +1,498 @@
+[gd_scene load_steps=15 format=3 uid="uid://bb8xfoxlj7jeh"]
+
+[ext_resource type="Material" uid="uid://c0fg32xcef6fv" path="res://resources/materials/edge_material.tres" id="1_4140a"]
+[ext_resource type="Script" path="res://scripts/graph/EdgeNode.gd" id="1_qckxi"]
+[ext_resource type="Theme" uid="uid://c1mx5kirbdjcn" path="res://resources/theme.tres" id="3_qx45v"]
+[ext_resource type="LabelSettings" uid="uid://f5aype46siqw" path="res://resources/labels/debug_label.tres" id="4_2brku"]
+
+[sub_resource type="Animation" id="Animation_1sst2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/color_base")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.494118, 0.643137, 0.87451, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/color_fill")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeightEdit:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WeightEdit:editable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gad2f"]
+resource_name = "algo_processed"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/color_fill")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.494118, 0.643137, 0.87451, 1), Color(0.494118, 0.643137, 0.87451, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/color_base")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.47451, 0.509804, 0.611765, 1), Color(0.47451, 0.509804, 0.611765, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [-0.1, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_dnhkv"]
+resource_name = "algo_processed_flip"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/color_base")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.494118, 0.643137, 0.87451, 1), Color(0.494118, 0.643137, 0.87451, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/color_fill")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.47451, 0.509804, 0.611765, 1), Color(0.47451, 0.509804, 0.611765, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [1.0, -0.1]
+}
+
+[sub_resource type="Animation" id="Animation_i7wv1"]
+resource_name = "algo_select"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/color_fill")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.494118, 0.643137, 0.87451, 1), Color(0.494118, 0.643137, 0.87451, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/color_base")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.329412, 0.945098, 0.65098, 1), Color(0.329412, 0.945098, 0.65098, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [-0.1, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_31t7i"]
+resource_name = "algo_select_flip"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/color_base")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.494118, 0.643137, 0.87451, 1), Color(0.494118, 0.643137, 0.87451, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/color_fill")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.329412, 0.945098, 0.65098, 1), Color(0.329412, 0.945098, 0.65098, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [1.0, -0.1]
+}
+
+[sub_resource type="Animation" id="Animation_50byf"]
+resource_name = "algo_unused"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/color_base")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(0.494118, 0.643137, 0.87451, 1), Color(0.47451, 0.509804, 0.611765, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/progress")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 1,
+"values": [1.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_1aouc"]
+resource_name = "connect"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/color_base")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.494118, 0.643137, 0.87451, 1), Color(0.494118, 0.643137, 0.87451, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/color_fill")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.494118, 0.643137, 0.87451, 0), Color(0.494118, 0.643137, 0.87451, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [-0.1, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeightEdit:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WeightEdit:editable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_bn2af"]
+resource_name = "connect_flip"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/color_base")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.494118, 0.643137, 0.87451, 0), Color(0.494118, 0.643137, 0.87451, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/color_fill")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [Color(0.494118, 0.643137, 0.87451, 1), Color(0.494118, 0.643137, 0.87451, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [1.0, -0.1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeightEdit:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WeightEdit:editable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_c10ej"]
+resource_name = "reset"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/color_base")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(0.5, 1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.494118, 0.643137, 0.87451, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/color_fill")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(0.5, 1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.494118, 0.643137, 0.87451, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_em6h1"]
+_data = {
+"RESET": SubResource("Animation_1sst2"),
+"algo_processed": SubResource("Animation_gad2f"),
+"algo_processed_flip": SubResource("Animation_dnhkv"),
+"algo_select": SubResource("Animation_i7wv1"),
+"algo_select_flip": SubResource("Animation_31t7i"),
+"algo_unused": SubResource("Animation_50byf"),
+"connect": SubResource("Animation_1aouc"),
+"connect_flip": SubResource("Animation_bn2af"),
+"reset": SubResource("Animation_c10ej")
+}
+
+[node name="EdgeNode" type="Line2D" groups=["edges"]]
+material = ExtResource("1_4140a")
+points = PackedVector2Array(-200.427, 0, 200.427, 0)
+default_color = Color(0.545098, 0.662745, 0.721569, 1)
+texture_mode = 2
+sharp_limit = 0.0
+round_precision = 1
+antialiased = true
+script = ExtResource("1_qckxi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_em6h1")
+}
+
+[node name="WeightEdit" type="LineEdit" parent="."]
+z_index = 2
+offset_left = -30.0
+offset_top = -25.0
+offset_right = 29.0625
+offset_bottom = -2.0
+pivot_offset = Vector2(30, 12)
+mouse_force_pass_scroll_events = false
+theme = ExtResource("3_qx45v")
+theme_type_variation = &"EdgeLengthEdit"
+text = "0"
+placeholder_text = "Weight"
+alignment = 1
+max_length = 6
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+caret_blink = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="WeightEdit" groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.560784, 0, 0.843137, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="ConnectionsLabel" type="Label" parent="WeightEdit" groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = 18.0
+offset_right = 55.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 > 0"
+label_settings = ExtResource("4_2brku")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Center" type="Marker2D" parent="."]
+
+[connection signal="focus_entered" from="WeightEdit" to="." method="_on_weight_edit_focus_enter"]
+[connection signal="focus_exited" from="WeightEdit" to="." method="_on_weight_edit_focus_exit"]
+[connection signal="mouse_exited" from="WeightEdit" to="." method="_on_weight_edit_mouse_exit"]
+[connection signal="text_submitted" from="WeightEdit" to="." method="_on_weight_edit_submit"]

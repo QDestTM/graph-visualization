@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dof3g3wmqie3i"]
+
+[sub_resource type="FontVariation" id="FontVariation_ba7eb"]
+spacing_bottom = 5
+
+[resource]
+font = SubResource("FontVariation_ba7eb")
+font_size = 20

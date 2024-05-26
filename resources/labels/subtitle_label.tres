@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cyd1qhvyknw5j"]
+
+[sub_resource type="FontVariation" id="FontVariation_2unbp"]
+spacing_top = 10
+spacing_bottom = 5
+
+[resource]
+font = SubResource("FontVariation_2unbp")
+font_size = 18

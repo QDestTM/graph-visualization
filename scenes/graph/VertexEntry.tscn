@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://knso0i35ye1u"]
+
+[ext_resource type="Material" uid="uid://d2xu6lbd12jea" path="res://resources/materials/vertex_state_material.tres" id="1_btp52"]
+[ext_resource type="Script" path="res://scripts/graph/VertexEntry.gd" id="2_la4te"]
+
+[sub_resource type="Animation" id="Animation_gjaw0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.7]
+}
+
+[sub_resource type="Animation" id="Animation_bffqu"]
+resource_name = "circle_animation"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.7, 0.9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5s5a"]
+_data = {
+"RESET": SubResource("Animation_gjaw0"),
+"circle_animation": SubResource("Animation_bffqu")
+}
+
+[node name="VertexEntry" type="ColorRect"]
+material = ExtResource("1_btp52")
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_la4te")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r5s5a")
+}

@@ -1,0 +1,113 @@
+[gd_scene load_steps=6 format=3 uid="uid://bi5ly6own2yuw"]
+
+[ext_resource type="Script" path="res://scripts/ui/elements/UserMessagesUI.gd" id="1_b7t42"]
+
+[sub_resource type="Animation" id="Animation_264js"]
+resource_name = "show_message"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, -20), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MessageLabel:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.988235)]
+}
+
+[sub_resource type="Animation" id="Animation_ugrsj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MessageLabel:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_km6rl"]
+_data = {
+"RESET": SubResource("Animation_ugrsj"),
+"show_message": SubResource("Animation_264js")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ilx60"]
+font_size = 22
+font_color = Color(0.376471, 0.490196, 0.545098, 1)
+outline_size = 3
+outline_color = Color(0.329412, 0.431373, 0.478431, 1)
+
+[node name="UserMessagesUI" type="Control"]
+layout_mode = 3
+anchor_right = 0.25
+anchor_bottom = 0.0694444
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_b7t42")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_km6rl")
+}
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.247059, 0.490196, 1, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="MessageLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 50.0
+text = "Lorem ipsum dolor!"
+label_settings = SubResource("LabelSettings_ilx60")
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=3 uid="uid://ivltntlrwygb"]
+
+[ext_resource type="Script" path="res://scripts/ui/elements/GraphStatsUI.gd" id="1_1txap"]
+[ext_resource type="StyleBox" uid="uid://d0w5ufwismtqh" path="res://resources/styles/round_A_color_500.tres" id="1_ofost"]
+[ext_resource type="Texture2D" uid="uid://ccws05r1ol1jc" path="res://resources/icons/vertex.png" id="2_tawty"]
+[ext_resource type="Texture2D" uid="uid://brea8gunlpltk" path="res://resources/icons/edge.png" id="3_8dws1"]
+[ext_resource type="Texture2D" uid="uid://ct31m6gkqh1rp" path="res://resources/icons/degree.png" id="5_ecj62"]
+
+[node name="GraphStatsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 115.0
+script = ExtResource("1_1txap")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.247059, 0.490196, 1, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="CounterVertices" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 35.0
+tooltip_text = "Vertices Count"
+theme_override_styles/panel = ExtResource("1_ofost")
+
+[node name="MarginContainer" type="MarginContainer" parent="CounterVertices"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="CounterVertices/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_tawty")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CounterLabel" type="Label" parent="CounterVertices"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CounterEdges" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 120.0
+offset_bottom = 75.0
+tooltip_text = "Edges Count"
+theme_override_styles/panel = ExtResource("1_ofost")
+
+[node name="MarginContainer" type="MarginContainer" parent="CounterEdges"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_right = 40.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CounterEdges/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_8dws1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CounterLabel" type="Label" parent="CounterEdges"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DisplayDegree" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 120.0
+offset_bottom = 115.0
+tooltip_text = "Vertex Degree"
+theme_override_styles/panel = ExtResource("1_ofost")
+
+[node name="MarginContainer" type="MarginContainer" parent="DisplayDegree"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 40.0
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="DisplayDegree/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("5_ecj62")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DisplayLabel" type="Label" parent="DisplayDegree"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
