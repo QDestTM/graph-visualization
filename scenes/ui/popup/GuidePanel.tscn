@@ -197,14 +197,37 @@ layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 10
 
-[node name="GuideText" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-0"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="GuideText-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-0/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "1. Selection Mode (1)
-2. Vertices Mode (2)
-3. Edges Mode (3)
-4. Just displays current mode."
+text = "1. Selection Mode (1)"
 label_settings = ExtResource("7_6btil")
+justification_flags = 0
+
+[node name="GuideText-1" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-0/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "2. Vertices Mode (2)"
+label_settings = ExtResource("7_6btil")
+justification_flags = 0
+
+[node name="GuideText-2" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-0/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "3. Edges Mode (3)"
+label_settings = ExtResource("7_6btil")
+justification_flags = 0
+
+[node name="GuideText-3" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-0/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "4. Just displays current mode."
+label_settings = ExtResource("7_6btil")
+justification_flags = 0
 
 [node name="Subtitle-1" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer"]
 layout_mode = 2
@@ -224,17 +247,51 @@ layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 10
 
-[node name="GuideText" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-1"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="GuideText-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-1/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "1. Animation Stop (Shift+P)
-2. Animation Step Back (Shift+Space)
-3. Animation Step Forward (Space)
-4. Animation Autoplay (Ctrl+P)
-5. Animation Play (P)
-6. Reset Entry (Shift + E)"
+text = "1. Animation Stop (Shift+P)"
 label_settings = ExtResource("7_6btil")
-autowrap_mode = 2
+justification_flags = 0
+
+[node name="GuideText-1" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-1/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "2. Animation Step Back (Shift+Space)"
+label_settings = ExtResource("7_6btil")
+justification_flags = 0
+
+[node name="GuideText-2" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-1/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "3. Animation Step Forward (Space)"
+label_settings = ExtResource("7_6btil")
+justification_flags = 0
+
+[node name="GuideText-3" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-1/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "4. Animation Autoplay (Ctrl+P)"
+label_settings = ExtResource("7_6btil")
+justification_flags = 0
+
+[node name="GuideText-4" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-1/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "5. Animation Play (P)"
+label_settings = ExtResource("7_6btil")
+justification_flags = 0
+
+[node name="GuideText-5" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/TextMargins-1/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "6. Reset Entry (Shift + E)"
+label_settings = ExtResource("7_6btil")
+justification_flags = 0
 
 [node name="Subtitle-2" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer"]
 layout_mode = 2
@@ -251,16 +308,34 @@ layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 10
 
-[node name="GuideText" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/SubContainer-2/TextMargins-2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/SubContainer-2/TextMargins-2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="GuideText-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/SubContainer-2/TextMargins-2/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 1
-text = "1. Clean Graph (Ctrl + N)
-2. Save Graph (Ctrl + S)
-3. Load Graph (Ctrl + L)"
+text = "1. Clean Graph (Ctrl + N)"
 label_settings = ExtResource("7_6btil")
 vertical_alignment = 1
-autowrap_mode = 2
+
+[node name="GuideText-1" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/SubContainer-2/TextMargins-2/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "2. Save Graph (Ctrl + S)"
+label_settings = ExtResource("7_6btil")
+vertical_alignment = 1
+
+[node name="GuideText-2" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/SubContainer-2/TextMargins-2/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "3. Load Graph (Ctrl + L)"
+label_settings = ExtResource("7_6btil")
+vertical_alignment = 1
 
 [node name="GuideImage-2" type="TextureRect" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-0/Margins/VContainer/SubContainer-2"]
 custom_minimum_size = Vector2(0, 100)
@@ -286,7 +361,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="Guide-1" type="Panel" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 1350)
+custom_minimum_size = Vector2(0, 1360)
 layout_mode = 2
 theme_type_variation = &"GuideContentSubPanel"
 
@@ -426,10 +501,29 @@ theme_override_constants/margin_top = 10
 [node name="GuideText-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer/TextMargins-4"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "To set the entry vertex of the graph, select \"Selection Mode (1)\", and while hover over the vertex press (E). There can only be one entry vertex, so if you try to set a new, the old one will be reset.
+text = "To set the entry vertex of the graph, select \"Selection Mode (1)\", and while hover over the vertex press (E). There can only be one entry vertex, so if you try to set a new, the old one will be reset."
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
 
-*You can undo and redo all of these actions, by using (Ctrl+Z) and (Ctrl+Shift+Z).
-*You can move camera, by using (W, S, D, A) keys and by RMB."
+[node name="TextMargins-End" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer/TextMargins-End"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Subtitle-End-0" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer/TextMargins-End/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "*You can undo and redo all of these actions, by using (Ctrl+Z) and (Ctrl+Shift+Z)."
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
+
+[node name="Subtitle-End-1" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-1/Margins/VContainer/TextMargins-End/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "*You can move camera, by using (W, S, D, A) keys and by RMB."
 label_settings = ExtResource("7_6btil")
 autowrap_mode = 2
 
@@ -507,9 +601,18 @@ theme_override_constants/margin_top = 10
 [node name="GuideText" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins/VContainer/TextMargins-1"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Once animation started, you can use \"Step Back (Shift+Space)\" and \"Step Forward (Space)\" to play the animation, or use \"Autoplay (Ctrl + P)\" to play it automatically. In \"Autoplay\" mode, the \"Step Forward\" action will be automatically used every 1 second.
+text = "Once animation started, you can use \"Step Back (Shift+Space)\" and \"Step Forward (Space)\" to play the animation, or use \"Autoplay (Ctrl + P)\" to play it automatically. In \"Autoplay\" mode, the \"Step Forward\" action will be automatically used every 1 second."
+label_settings = ExtResource("7_6btil")
+autowrap_mode = 2
 
-To stop animation, press \"Stop (Shift+P)\" on Animation Player."
+[node name="TextMargins-End" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="Subtitle-End" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Guide-2/Margins/VContainer/TextMargins-End"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "To stop animation, press \"Stop (Shift+P)\" on Animation Player."
 label_settings = ExtResource("7_6btil")
 autowrap_mode = 2
 

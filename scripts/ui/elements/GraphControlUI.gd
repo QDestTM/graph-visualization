@@ -4,6 +4,8 @@ extends Control
 
 # MEMBERS ######################################################################
 
+var _restore_path: String = "user://_restore.jsog"
+
 var _last_opened_path: String = "user://"
 var _last_opened_file: String = "graph.json"
 
@@ -33,6 +35,26 @@ func _update_last_data(path: String) -> void:
 	
 	_last_opened_path = split_path[0]
 	_last_opened_file = split_path[1]
+
+################################################################################
+
+func _restore_load() -> void:
+	if !Globals.is_graph_restore():
+		return
+	
+	var exists: bool = FileAccess \
+		.file_exists(_restore_path)
+	
+	if exists == false:
+		return
+	
+	_graph_load(_restore_path)
+	print("Graph Control - Graph Restored.")
+
+
+func _restore_save() -> void:
+	_save_graph(_restore_path)
+	print("Graph Control - Graph Backuped.")
 
 ################################################################################
 
@@ -78,10 +100,11 @@ func _save_graph(path: String) -> void:
 	file.store_string(
 		JSON.stringify(data, "\t", false, false))
 	
-	_update_last_data(path)
 	file.close()
 	
-	Globals.send_user_message("Graph Saved!")
+	if path != _restore_path:
+		Globals.send_user_message("Graph Saved!")
+		_update_last_data(path)
 
 
 func _graph_load(path: String) -> void:
@@ -89,7 +112,6 @@ func _graph_load(path: String) -> void:
 	var data: Dictionary = JSON.parse_string(
 			file.get_as_text(false))
 	
-	_update_last_data(path)
 	file.close()
 	
 	if _validate_json_data(data) == false:
@@ -132,7 +154,9 @@ func _graph_load(path: String) -> void:
 		data_camera[1]
 	)
 	
-	Globals.send_user_message("Graph Loaded!")
+	if path != _restore_path:
+		_update_last_data(path)
+		Globals.send_user_message("Graph Loaded!")
 
 
 ################################################################################
@@ -246,11 +270,15 @@ func _graph_load_action_callback(
 func _on_userdata_loading(data: Dictionary) -> void:
 	_last_opened_path = data.get("last_opened_path", "user://")
 	_last_opened_file = data.get("last_opened_file", "graph.json")
+	
+	_restore_load()
 
 
 func _on_userdata_saving(data: Dictionary) -> void:
 	data["last_opened_path"] = _last_opened_path
 	data["last_opened_file"] = _last_opened_file
+	
+	_restore_save()
 
 ################################################################################
 

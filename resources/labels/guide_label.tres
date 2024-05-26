@@ -1,4 +1,9 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://lppqpew8em23"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://lppqpew8em23"]
+
+[sub_resource type="FontVariation" id="FontVariation_venp5"]
+spacing_top = 3
 
 [resource]
+line_spacing = 0.0
+font = SubResource("FontVariation_venp5")
 font_size = 14

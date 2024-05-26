@@ -27,6 +27,8 @@ var ID: IDGenerator = IDGenerator.new()
 var _playmode_speed_scale: float = 1.0
 var _playmode_skip_animation: bool = false
 
+var _graph_restore: bool = true
+
 var _interaction_mode: Enums.InteractionMode
 
 var _gui_disabled: bool = false
@@ -177,6 +179,11 @@ func set_playmode_animation_skip(state: bool) -> void:
 
 ################################################################################
 
+func set_graph_restore(state: bool) -> void:
+	_graph_restore = state
+
+################################################################################
+
 func invoke_animation_finished() -> void:
 	animation_finished.emit()
 
@@ -233,6 +240,9 @@ func get_camera() -> WorldCamera:
 func is_playmode_skip_animation() -> bool:
 	return _playmode_skip_animation
 
+func is_graph_restore() -> bool:
+	return _graph_restore
+
 func is_gui_visible() -> bool:
 	return _gui_visible
 
@@ -277,12 +287,15 @@ func _on_userdata_loading(data: Dictionary) -> void:
 	var settings: Dictionary = data.get("settings", {})
 	_playmode_speed_scale = settings.get("playmode_speed_scale", 1.0)
 	_playmode_skip_animation = settings.get("playmode_skip_animation", false)
+	
+	_graph_restore = settings.get("graph_restore", true)
 
 
 func _on_userdata_saving(data: Dictionary) -> void:
 	data["settings"] = {
-		"playmode_speed_scale" : _playmode_speed_scale,
-		"playmode_skip_animation" : _playmode_skip_animation
+		"playmode_speed_scale"    : _playmode_speed_scale,
+		"playmode_skip_animation" : _playmode_skip_animation,
+		"graph_restore"           : _graph_restore
 	}
 
 ################################################################################

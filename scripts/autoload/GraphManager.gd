@@ -130,6 +130,9 @@ func is_graph_entry_defined() -> bool:
 func is_vertex_id_valid(id: int) -> bool:
 	return _vertex_map.has(id)
 
+func is_graph_empty() -> bool:
+	return _vertex_map.is_empty()
+
 ################################################################################
 
 func get_root() -> Node2D:
