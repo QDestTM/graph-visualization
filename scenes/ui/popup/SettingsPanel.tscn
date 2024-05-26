@@ -132,6 +132,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 10.0
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
@@ -157,7 +158,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="Settings-0" type="Panel" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 190)
+custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
 theme_type_variation = &"SettingsContentSubPanel"
 
@@ -169,7 +170,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 0
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
@@ -273,6 +274,42 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = ExtResource("8_4yg8x")
 text = "Animation Skip"
 
+[node name="Title-1" type="Label" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Graph"
+label_settings = ExtResource("3_elyxl")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Settings-1" type="Panel" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_type_variation = &"SettingsContentSubPanel"
+
+[node name="Margins" type="MarginContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VContainer" type="VBoxContainer" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-1/Margins"]
+layout_mode = 2
+
+[node name="GraphRestore" type="CheckBox" parent="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-1/Margins/VContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "If enabled, the graph will be restored on next launch."
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = ExtResource("8_4yg8x")
+text = "Restore Graph"
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finish"]
 [connection signal="resized" from="ContentRect" to="." method="_on_content_rect_resize"]
 [connection signal="pressed" from="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer/Scale-1x" to="." method="_on_anim_speed_scale_1x_pressed"]
@@ -281,3 +318,4 @@ text = "Animation Skip"
 [connection signal="pressed" from="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer/Scale-4x" to="." method="_on_anim_speed_scale_4x_pressed"]
 [connection signal="pressed" from="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/SpeedScale/VContainer/HBoxContainer/Scale-5x" to="." method="_on_anim_speed_scale_5x_pressed"]
 [connection signal="toggled" from="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-0/Margins/VContainer/AnimationSkip" to="." method="_on_animation_skip_toggled"]
+[connection signal="toggled" from="ContentRect/ContentPanel/ScrollContainer/MarginContainer/VBoxContainer/Settings-1/Margins/VContainer/GraphRestore" to="." method="_on_graph_restore_toggled"]

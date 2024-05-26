@@ -8,6 +8,7 @@ extends Control
 var _state_visible: bool = false
 
 var _anim_skip_mark: CheckBox = null
+var _graph_restore: CheckBox = null
 
 var _anim_speed_scale_1x: Button = null
 var _anim_speed_scale_2x: Button = null
@@ -30,6 +31,7 @@ func _ready() -> void:
 		.connect(state_changer.bind(true))
 	
 	_anim_skip_mark = %AnimationSkip
+	_graph_restore = %GraphRestore
 	
 	_anim_speed_scale_1x = %"Scale-1x"
 	_anim_speed_scale_2x = %"Scale-2x"
@@ -51,6 +53,8 @@ func _ready() -> void:
 	var deffered_tasks := func() -> void:
 		_anim_skip_mark.button_pressed \
 			= Globals.is_playmode_skip_animation()
+		_graph_restore.button_pressed \
+			= Globals.is_graph_restore()
 		
 		var speed_scale: float \
 			= Globals.get_playmode_speed_scale()
@@ -138,5 +142,9 @@ func _on_anim_speed_scale_5x_pressed() -> void:
 
 func _on_animation_skip_toggled(toggled_on: bool) -> void:
 	Globals.set_playmode_animation_skip(toggled_on)
+
+
+func _on_graph_restore_toggled(toggled_on: bool) -> void:
+	Globals.set_graph_restore(toggled_on)
 
 ################################################################################
