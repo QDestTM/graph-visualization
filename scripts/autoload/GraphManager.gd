@@ -260,6 +260,7 @@ func graph_entry_remove() -> void:
 
 func destroy_graph() -> void:
 	action.clean_actions()
+	Globals.ID.reset_id()
 	var nodes: Array
 	
 	nodes = Globals.get_all_vertices()

@@ -66,7 +66,8 @@ func _save_graph(path: String) -> void:
 		"camera"   : [
 			Globals.get_camera().position.x,
 			Globals.get_camera().position.y
-		]
+		],
+		"last_id" : Globals.ID.get_last_id()
 	}
 	
 	var vertices_data: Dictionary = data["vertices"]
@@ -120,6 +121,10 @@ func _graph_load(path: String) -> void:
 	# Building graph from data
 	GraphManager.destroy_graph()
 	
+	# Reading last id data
+	# It's important to make BEFORE loading vertices
+	Globals.ID.set_last_id(data["last_id"])
+	
 	# Reading vertices data
 	var data_vertices: Dictionary = data["vertices"]
 	
@@ -147,7 +152,7 @@ func _graph_load(path: String) -> void:
 		GraphManager.graph_entry_define(
 			GraphManager.vertex_from_id(entry_id))
 	
-	# Reding camera position data
+	# Reading camera position data
 	var data_camera: Array = data["camera"]
 	Globals.get_camera().position = Vector2(
 		data_camera[0],
@@ -173,6 +178,8 @@ func _validate_json_data(data: Dictionary) -> bool:
 		return false
 	if not data.has("camera"):
 		return false
+	if not data.has("last_id"):
+		return false
 	
 	if not data["vertices"] is Dictionary:
 		return false
@@ -181,6 +188,8 @@ func _validate_json_data(data: Dictionary) -> bool:
 	if not data["entry"] is float:
 		return false
 	if not data["camera"] is Array:
+		return false
+	if not data["last_id"] is float:
 		return false
 	
 	# Validating vertices data

@@ -9,6 +9,13 @@ var _id: int = -1
 ################################################################################
 # PUBLIC #######################################################################
 
+func get_last_id() -> int:
+	return _id
+
+func set_last_id(id: int) -> void:
+	_id = id
+
+
 func set_temporary(id: int) -> void:
 	_id_next_temp = id
 
