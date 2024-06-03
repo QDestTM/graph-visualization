@@ -24,18 +24,21 @@ signal user_message_sending(message: String)
 
 var ID: IDGenerator = IDGenerator.new()
 
-var _playmode_speed_scale: float = 1.0
+var _playmode_speed_scale   : float = 1.0
 var _playmode_skip_animation: bool = false
+var _playmode_camera_locked : bool = false
 
-var _graph_restore: bool = true
+var _graph_restore                  : bool = true
+var _graph_tags_placeholders_visible: bool = true
 
 var _interaction_mode: Enums.InteractionMode
 
-var _gui_disabled: bool = false
-var _gui_visible: bool = true
+var _lock_keybinds: bool = false
+var _gui_disabled : bool = false
+var _gui_visible  : bool = true
 
 var _playmode_disabled: bool = true
-var _debug_mode: bool = false
+var _debug_mode       : bool = false
 
 var _world_camera: WorldCamera = null
 
@@ -98,6 +101,32 @@ func userdata_save() -> void:
 
 ################################################################################
 
+func lock_keybinds() -> void:
+	assert(_lock_keybinds == false,
+		"Keybinds already locked!")
+		
+	_lock_keybinds = true
+
+
+func unlock_keybinds() -> void:
+	assert(_lock_keybinds == true,
+		"Keybinds already unlocked!")
+		
+	_lock_keybinds = false
+
+################################################################################
+
+func lock_playmode_camera() -> void:
+	_world_camera.lock_movement()
+	_playmode_camera_locked = true
+
+
+func unlock_playmode_camera() -> void:
+	_world_camera.unlock_movement()
+	_playmode_camera_locked = false
+
+################################################################################
+
 func disable_gui() -> void:
 	assert(_gui_disabled == false,
 		"GUI already disabled!")
@@ -140,7 +169,10 @@ func disable_playmode() -> void:
 	disable_playmode_request.emit()
 	
 	for edge in get_all_edges() as Array[EdgeNode]:
-		edge.weight_make_editable()
+		edge.edlns_make_editable()
+	
+	for vertex in get_all_vertices() as Array[VertexNode]:
+		vertex.edlns_make_editable()
 	
 	_world_camera.clamp_position()
 
@@ -153,7 +185,10 @@ func enable_playmode() -> void:
 	enable_playmode_request.emit()
 	
 	for edge in get_all_edges() as Array[EdgeNode]:
-		edge.weight_make_readonly()
+		edge.edlns_make_readonly()
+	
+	for vertex in get_all_vertices() as Array[VertexNode]:
+		vertex.edlns_make_readonly()
 
 ################################################################################
 
@@ -181,6 +216,27 @@ func set_playmode_animation_skip(state: bool) -> void:
 
 func set_graph_restore(state: bool) -> void:
 	_graph_restore = state
+
+################################################################################
+
+func graph_tags_hide_placeholders() -> void:
+	if is_graph_tags_placeholders_visible() == false:
+		return
+	
+	_graph_tags_placeholders_visible = false
+	
+	for vertex in get_all_vertices() as Array[VertexNode]:
+		vertex.tags_hide_placeholder()
+
+
+func graph_tags_show_placeholders() -> void:
+	if is_graph_tags_placeholders_visible() == true:
+		return
+	
+	_graph_tags_placeholders_visible = true
+	
+	for vertex in get_all_vertices() as Array[VertexNode]:
+		vertex.tags_show_placeholder()
 
 ################################################################################
 
@@ -237,11 +293,20 @@ func get_camera() -> WorldCamera:
 
 ################################################################################
 
+func is_graph_tags_placeholders_visible() -> bool:
+	return _graph_tags_placeholders_visible
+
 func is_playmode_skip_animation() -> bool:
 	return _playmode_skip_animation
 
+func is_playmode_camera_locked() -> bool:
+	return _playmode_camera_locked
+
 func is_graph_restore() -> bool:
 	return _graph_restore
+
+func is_keybinds_locked() -> bool:
+	return _lock_keybinds
 
 func is_gui_visible() -> bool:
 	return _gui_visible
@@ -289,13 +354,16 @@ func _on_userdata_loading(data: Dictionary) -> void:
 	_playmode_skip_animation = settings.get("playmode_skip_animation", false)
 	
 	_graph_restore = settings.get("graph_restore", true)
+	_graph_tags_placeholders_visible \
+		= settings.get("graph_tags_placeholder", true)
 
 
 func _on_userdata_saving(data: Dictionary) -> void:
 	data["settings"] = {
 		"playmode_speed_scale"    : _playmode_speed_scale,
 		"playmode_skip_animation" : _playmode_skip_animation,
-		"graph_restore"           : _graph_restore
+		"graph_restore"           : _graph_restore,
+		"graph_tags_placeholder"   : _graph_tags_placeholders_visible
 	}
 
 ################################################################################

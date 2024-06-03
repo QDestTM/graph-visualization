@@ -442,14 +442,17 @@ libraries = {
 
 [node name="WeightEdit" type="LineEdit" parent="."]
 z_index = 2
-offset_left = -30.0
+offset_left = -40.0
 offset_top = -25.0
-offset_right = 29.0625
-offset_bottom = -2.0
-pivot_offset = Vector2(30, 12)
+offset_right = 40.0
+offset_bottom = 3.0
+pivot_offset = Vector2(40, 15)
 mouse_force_pass_scroll_events = false
 theme = ExtResource("3_qx45v")
 theme_type_variation = &"EdgeLengthEdit"
+theme_override_colors/caret_color = Color(1, 0.627451, 0.815686, 1)
+theme_override_colors/selection_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 20
 text = "0"
 placeholder_text = "Weight"
 alignment = 1

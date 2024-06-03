@@ -5,19 +5,26 @@ const EdgeScene := preload("res://scenes/graph/EdgeNode.tscn")
 
 # MEMBERS ######################################################################
 
-
 # { <VertexNode> : <EdgeNode> }
 var _contiguity_map: Dictionary = {}
 var _vertex_id: int = -1
 
-var _distance_update_quequed: bool = false
 var _distance: int = -1
+var _defined_tag: String = ""
+
+var _edln_tag: LineEdit = null
 
 ################################################################################
 # VIRTUAL ######################################################################
 
 func _ready() -> void:
+	$TagEditLine/ReferenceRect.visible = Globals.is_debug_mode()
 	$ReferenceArea.visible = Globals.is_debug_mode()
+	
+	_edln_tag = $TagEditLine
+	
+	if not Globals.is_graph_tags_placeholders_visible():
+		tags_hide_placeholder()
 
 
 func _notification(what: int) -> void:
@@ -90,8 +97,46 @@ func anim_reset(back: bool) -> void:
 
 ################################################################################
 
+func edlns_make_readonly() -> void:
+	_edln_tag.editable = false
+	_edln_tag.selecting_enabled = false
+
+
+func edlns_make_editable() -> void:
+	_edln_tag.editable = true
+	_edln_tag.selecting_enabled = true
+
+################################################################################
+
+func tags_hide_placeholder() -> void:
+	_edln_tag.placeholder_text = ""
+
+
+func tags_show_placeholder() -> void:
+	_edln_tag.placeholder_text = "Tag"
+
+################################################################################
+
+func get_tag() -> String:
+	return _defined_tag
+
+
+func set_tag(new_tag: String) -> void:
+	_defined_tag = new_tag; _edln_tag.text = new_tag
+
+
+func remove_tag() -> void:
+	assert( is_tag_defined(),
+		"This vertex don't have a tag." )
+	
+	GraphManager.remove_tag(_defined_tag)
+	set_tag("")
+
+################################################################################
+
 func get_id() -> int:
 	return _vertex_id
+
 
 func get_degree() -> int:
 	return _contiguity_map.size()
@@ -247,8 +292,38 @@ func is_edge_begin() -> bool:
 func is_graph_entry() -> bool:
 	return is_same(self, GraphManager.get_graph_entry() )
 
+func is_tag_defined() -> bool:
+	return not _defined_tag.is_empty()
+
 ################################################################################
 # PRIVATE ######################################################################
+
+func _update_tag(new_tag: String) -> void:
+	new_tag = new_tag.to_upper().replace(" ", "")
+	_edln_tag.text = new_tag
+	
+	if new_tag == _defined_tag:
+		return
+	
+	if GraphManager.is_tag_registered(new_tag):
+		Globals.send_user_message("This tag already used!")
+		return set_tag(_defined_tag)
+	
+	GraphManager.action.vertex_set_tag(self, new_tag)
+	
+	if is_tag_defined():
+		GraphManager.remove_tag(_defined_tag)
+		
+		if not new_tag.is_empty():
+			GraphManager.define_tag(self, new_tag)
+			return set_tag(new_tag)
+		else:
+			return set_tag("")
+	
+	
+	if not new_tag.is_empty():
+		GraphManager.define_tag(self, new_tag)
+		return set_tag(new_tag)
 
 ################################################################################
 # SIGNAL HANDLERS ##############################################################
@@ -301,5 +376,26 @@ func _on_area_input(event: InputEvent) -> void:
 				
 		Enums.InteractionMode.Edges when event.is_pressed():
 			GraphManager.edges_incident_entry(self)
+
+################################################################################
+
+func _on_tag_edit_submit(text: String) -> void:
+	_edln_tag.release_focus(); _update_tag(text)
+
+
+func _on_tag_edit_mouse_exit() -> void:
+	_edln_tag.release_focus()
+
+
+func _on_tag_edit_focus_enter() -> void:
+	if not Globals.is_playmode_camera_locked():
+		Globals.get_camera().lock_movement()
+
+
+func _on_tag_edit_focus_exit() -> void:
+	if not Globals.is_playmode_camera_locked():
+		Globals.get_camera().unlock_movement()
+	
+	_update_tag(_edln_tag.text)
 
 ################################################################################

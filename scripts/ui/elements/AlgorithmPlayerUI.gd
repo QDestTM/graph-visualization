@@ -85,9 +85,9 @@ func _update_button_states() -> void:
 		= !GraphManager.player.can_step_front()
 	
 	if !GraphManager.player.can_step_front():
-		Globals.get_camera().unlock_movement()
+		Globals.unlock_playmode_camera()
 	else:
-		Globals.get_camera().lock_movement()
+		Globals.lock_playmode_camera()
 
 ################################################################################
 # SIGNAL HANDLERS ##############################################################
@@ -130,7 +130,7 @@ func _on_disable_playmode_request() -> void:
 	_btn_auto_play.disabled = true
 	_btn_play.disabled = false
 	
-	Globals.get_camera().unlock_movement()
+	Globals.unlock_playmode_camera()
 	_btn_reset_entry.disabled = false
 
 
@@ -141,7 +141,7 @@ func _on_enable_playmode_request() -> void:
 	_btn_auto_play.disabled = false
 	_btn_play.disabled = true
 	
-	Globals.get_camera().lock_movement()
+	Globals.lock_playmode_camera()
 	_btn_reset_entry.disabled = true
 
 ################################################################################

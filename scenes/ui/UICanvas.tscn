@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cwoa0i8oounv5"]
+[gd_scene load_steps=19 format=3 uid="uid://cwoa0i8oounv5"]
 
 [ext_resource type="Script" path="res://scripts/ui/UICanvas.gd" id="1_3kym6"]
 [ext_resource type="PackedScene" uid="uid://ii070gb3xb3e" path="res://scenes/ui/elements/InteractionModeUI.tscn" id="2_ujk6y"]
@@ -9,8 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://ivltntlrwygb" path="res://scenes/ui/elements/GraphStatsUI.tscn" id="6_rxao0"]
 [ext_resource type="PackedScene" uid="uid://8jjtrqyrjrla" path="res://scenes/ui/buttons/SettingsOpenButton.tscn" id="7_0c7sb"]
 [ext_resource type="PackedScene" uid="uid://bi5ly6own2yuw" path="res://scenes/ui/elements/UserMessagesUI.tscn" id="8_2xy5o"]
+[ext_resource type="PackedScene" uid="uid://bhpdwiiywrkw7" path="res://scenes/ui/buttons/SearchOpenButton.tscn" id="8_bpst3"]
 [ext_resource type="PackedScene" uid="uid://5actm4d4gjp8" path="res://scenes/ui/popup/GuidePanel.tscn" id="10_bylf0"]
 [ext_resource type="PackedScene" uid="uid://cv3ajva86exwg" path="res://scenes/ui/popup/SettingsPanel.tscn" id="11_r4l87"]
+[ext_resource type="PackedScene" uid="uid://p5cu3i1cv3j4" path="res://scenes/ui/popup/SearchPanel.tscn" id="13_rnlfx"]
 
 [sub_resource type="Animation" id="Animation_gbjb4"]
 length = 0.001
@@ -84,7 +86,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(50, 0)]
+"values": [Vector2(90, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -97,6 +99,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UI-ElementContainer-6/SearchOpenButton:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(130, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ea3t5"]
@@ -172,7 +186,19 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Vector2(50, 0), Vector2(0, 0)]
+"values": [Vector2(90, 0), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI-ElementContainer-6/SearchOpenButton:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(130, 0), Vector2(40, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_gcfvf"]
@@ -224,7 +250,19 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Vector2(50, 0), Vector2(50, 60)]
+"values": [Vector2(90, 0), Vector2(90, 60)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI-ElementContainer-6/SearchOpenButton:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(130, 0), Vector2(130, 60)]
 }
 
 [sub_resource type="Animation" id="Animation_2dw2a"]
@@ -420,9 +458,9 @@ layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -30.0
+offset_left = -70.0
 offset_top = -105.0
-offset_right = 50.0
+offset_right = 90.0
 offset_bottom = -75.0
 grow_vertical = 0
 mouse_filter = 2
@@ -441,10 +479,15 @@ editor_only = false
 
 [node name="SettingsOpenButton" parent="UI-ElementContainer-6" instance=ExtResource("7_0c7sb")]
 layout_mode = 1
-offset_left = 50.0
-offset_right = 80.0
+offset_left = 90.0
+offset_right = 120.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="SearchOpenButton" parent="UI-ElementContainer-6" instance=ExtResource("8_bpst3")]
+layout_mode = 0
+offset_left = 130.0
+offset_right = 160.0
 
 [node name="UserMessagesUI" parent="." instance=ExtResource("8_2xy5o")]
 anchors_preset = 1
@@ -493,11 +536,18 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="SearchPanel" parent="OverlayContent" instance=ExtResource("13_rnlfx")]
+visible = false
+layout_mode = 1
+
 [connection signal="popup_panel_hide" from="." to="OverlayContent/GuidePanel" method="_on_popup_panel_hide"]
 [connection signal="popup_panel_hide" from="." to="OverlayContent/SettingsPanel" method="_on_popup_panel_hide"]
+[connection signal="popup_panel_hide" from="." to="OverlayContent/SearchPanel" method="_on_popup_panel_hide"]
 [connection signal="popup_panel_show" from="." to="OverlayContent/GuidePanel" method="_on_popup_panel_show"]
 [connection signal="popup_panel_show" from="." to="OverlayContent/SettingsPanel" method="_on_popup_panel_show"]
+[connection signal="popup_panel_show" from="." to="OverlayContent/SearchPanel" method="_on_popup_panel_show"]
 [connection signal="gui_input" from="InputArea" to="." method="_on_area_input"]
 [connection signal="pressed" from="UI-ElementContainer-3/GuideOpenButton" to="." method="_on_guide_open_pressed"]
 [connection signal="pressed" from="UI-ElementContainer-6/SettingsOpenButton" to="." method="_on_settings_open_pressed"]
+[connection signal="pressed" from="UI-ElementContainer-6/SearchOpenButton" to="." method="_on_search_open_pressed"]
 [connection signal="gui_input" from="OverlayContent/Background" to="." method="_on_popup_background_input"]

@@ -1,18 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://8jjtrqyrjrla"]
+[gd_scene load_steps=5 format=3 uid="uid://bhpdwiiywrkw7"]
 
-[ext_resource type="Theme" uid="uid://c1mx5kirbdjcn" path="res://resources/theme.tres" id="1_rfsd3"]
-[ext_resource type="Texture2D" uid="uid://dkwqdvsycaaqy" path="res://resources/icons/settings.png" id="3_ysr82"]
+[ext_resource type="Theme" uid="uid://c1mx5kirbdjcn" path="res://resources/theme.tres" id="1_o3518"]
+[ext_resource type="Texture2D" uid="uid://cpm65jmm5be2k" path="res://resources/icons/search.png" id="2_dgmeg"]
 
-[node name="SettingsOpenButton" type="Button"]
+[sub_resource type="InputEventAction" id="InputEventAction_lcd3p"]
+action = &"show_search_panel"
+
+[sub_resource type="Shortcut" id="Shortcut_hvebr"]
+events = [SubResource("InputEventAction_lcd3p")]
+
+[node name="SearchOpenButton" type="Button"]
 offset_right = 30.0
 offset_bottom = 30.0
-grow_horizontal = 2
-grow_vertical = 2
-tooltip_text = "Open Settings"
+tooltip_text = "Search by tag (Ctrl + F)"
 focus_mode = 0
-theme = ExtResource("1_rfsd3")
-theme_type_variation = &"SettingsOpenButton"
-metadata/_edit_use_anchors_ = true
+theme = ExtResource("1_o3518")
+theme_type_variation = &"SearchOpenButton"
+shortcut = SubResource("Shortcut_hvebr")
+shortcut_in_tooltip = false
 
 [node name="ReferenceRect" type="ReferenceRect" parent="." groups=["debug_node"]]
 layout_mode = 1
@@ -42,6 +47,6 @@ theme_override_constants/margin_bottom = 2
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("3_ysr82")
+texture = ExtResource("2_dgmeg")
 expand_mode = 1
 stretch_mode = 4

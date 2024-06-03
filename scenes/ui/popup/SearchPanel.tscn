@@ -1,0 +1,214 @@
+[gd_scene load_steps=10 format=3 uid="uid://p5cu3i1cv3j4"]
+
+[ext_resource type="Theme" uid="uid://c1mx5kirbdjcn" path="res://resources/theme.tres" id="1_coafh"]
+[ext_resource type="StyleBox" uid="uid://co3qrj65cu8xh" path="res://resources/styles/empty_style.tres" id="2_3nwcr"]
+[ext_resource type="Script" path="res://scripts/ui/popup/SearchPanel.gd" id="2_7mi6x"]
+[ext_resource type="StyleBox" uid="uid://cfk8dmlla6xb7" path="res://resources/styles/round_A_color_600.tres" id="3_raxys"]
+[ext_resource type="StyleBox" uid="uid://dnqdh3oikwcwd" path="res://resources/styles/round_A_color_700.tres" id="5_uqa1y"]
+[ext_resource type="Texture2D" uid="uid://cpm65jmm5be2k" path="res://resources/icons/search.png" id="5_yg362"]
+
+[sub_resource type="Animation" id="Animation_e7bhf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContentRect/ContentPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContentRect/ContentPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_crgyx"]
+resource_name = "show_ui"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContentRect/ContentPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector2(0, 30), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContentRect/ContentPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dn0sv"]
+_data = {
+"RESET": SubResource("Animation_e7bhf"),
+"show_ui": SubResource("Animation_crgyx")
+}
+
+[node name="SearchPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_coafh")
+script = ExtResource("2_7mi6x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dn0sv")
+}
+
+[node name="ContentRect" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = 200.0
+offset_right = 200.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="ContentRect" groups=["debug_node"]]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.247059, 0.490196, 1, 1)
+border_width = 2.0
+
+[node name="ContentPanel" type="Panel" parent="ContentRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 320.0
+theme_type_variation = &"SearchContentPanel"
+
+[node name="SearchContainer" type="MarginContainer" parent="ContentRect/ContentPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentRect/ContentPanel/SearchContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SearchEdit" type="Panel" parent="ContentRect/ContentPanel/SearchContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("3_raxys")
+
+[node name="Margins" type="MarginContainer" parent="ContentRect/ContentPanel/SearchContainer/HBoxContainer/SearchEdit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="SearchLine" type="LineEdit" parent="ContentRect/ContentPanel/SearchContainer/HBoxContainer/SearchEdit/Margins"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/caret_color = Color(1, 0.627451, 0.815686, 1)
+theme_override_colors/selection_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_styles/normal = ExtResource("2_3nwcr")
+theme_override_styles/focus = ExtResource("2_3nwcr")
+theme_override_styles/read_only = ExtResource("2_3nwcr")
+placeholder_text = "Enter the tag"
+max_length = 6
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+caret_blink = true
+
+[node name="SearchButton" type="Button" parent="ContentRect/ContentPanel/SearchContainer/HBoxContainer"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+tooltip_text = "Search"
+focus_mode = 0
+theme_override_styles/normal = ExtResource("3_raxys")
+theme_override_styles/hover = ExtResource("3_raxys")
+theme_override_styles/pressed = ExtResource("5_uqa1y")
+theme_override_styles/focus = ExtResource("2_3nwcr")
+icon = ExtResource("5_yg362")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ItemsPanel" type="Panel" parent="ContentRect/ContentPanel"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 65.0
+offset_right = -10.0
+offset_bottom = -15.0
+theme_override_styles/panel = ExtResource("3_raxys")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ContentRect/ContentPanel/ItemsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentRect/ContentPanel/ItemsPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="ContentRect/ContentPanel/ItemsPanel/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 4
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finish"]
+[connection signal="resized" from="ContentRect" to="." method="_on_content_rect_resize"]
+[connection signal="text_submitted" from="ContentRect/ContentPanel/SearchContainer/HBoxContainer/SearchEdit/Margins/SearchLine" to="." method="_on_search_line_submit"]
+[connection signal="pressed" from="ContentRect/ContentPanel/SearchContainer/HBoxContainer/SearchButton" to="." method="_on_search_button_pressed"]

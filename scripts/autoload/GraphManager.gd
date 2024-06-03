@@ -34,6 +34,8 @@ var player: AlgorithmPlayer = AlgorithmPlayer.new()
 var _vertex_map: Dictionary = {}
 var _graph_root: Node2D = null
 
+var _registered_tags: Dictionary = {}
+
 var _hovering_vertex_delete: bool = false
 var _hovering_vertex: VertexNode = null
 
@@ -70,6 +72,9 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if Globals.is_keybinds_locked():
+		return
+	
 	var pressed: bool = event.is_pressed()
 	
 	if event.is_action("ui_redo") and pressed:
@@ -130,6 +135,9 @@ func is_graph_entry_defined() -> bool:
 func is_vertex_id_valid(id: int) -> bool:
 	return _vertex_map.has(id)
 
+func is_tag_registered(tag: String) -> bool:
+	return _registered_tags.has(tag)
+
 func is_graph_empty() -> bool:
 	return _vertex_map.is_empty()
 
@@ -152,6 +160,21 @@ func get_edge_begin() -> VertexNode:
 
 func vertex_from_id(id: int) -> VertexNode:
 	return _vertex_map[id]
+
+################################################################################
+
+func define_tag(vertex: VertexNode, tag: String) -> void:
+	assert(is_tag_registered(tag) == false,
+		"This tag already defined!")
+	
+	_registered_tags[tag] = vertex
+
+
+func remove_tag(tag: String) -> void:
+	assert(is_tag_registered(tag) == true,
+		"This tag are not registered!")
+
+	_registered_tags.erase(tag)
 
 ################################################################################
 
@@ -215,6 +238,9 @@ func vertex_delete(vertex: VertexNode) -> void:
 	if vertex.is_graph_entry():
 		_graph_entry_remove()
 	
+	if vertex.is_tag_defined():
+		remove_tag( vertex.get_tag() )
+	
 	_vertex_map_remove(vertex)
 	vertex.animate_and_free()
 
@@ -260,7 +286,7 @@ func graph_entry_remove() -> void:
 
 func destroy_graph() -> void:
 	action.clean_actions()
-	Globals.ID.reset_id()
+	Globals.ID.reset_id_counter()
 	var nodes: Array
 	
 	nodes = Globals.get_all_vertices()
@@ -311,13 +337,13 @@ func _edges_incident_step_2(vertex: VertexNode) -> void:
 	Globals.show_gui()
 	Globals.enable_gui()
 	
-	if is_same(_edge_begin, vertex):
+	if is_same(_edge_begin, vertex): # Cancel connection
 		_edge_begin.anim_special_hover(false)
 		_edge_begin = null
 		
 		return edge_connection_canceled.emit()
 	
-	if _edge_begin.is_incident_with(vertex):
+	if _edge_begin.is_incident_with(vertex): # Remove connection
 		action.edges_disconnect(_edge_begin, vertex)
 		
 		_edge_begin.incidence_remove(vertex)

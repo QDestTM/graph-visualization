@@ -7,8 +7,9 @@ extends Control
 
 var _state_visible: bool = false
 
-var _anim_skip_mark: CheckBox = null
-var _graph_restore: CheckBox = null
+var _anim_skip_mark        : CheckBox = null
+var _graph_restore         : CheckBox = null
+var _graph_tags_placeholder: CheckBox = null
 
 var _anim_speed_scale_1x: Button = null
 var _anim_speed_scale_2x: Button = null
@@ -32,6 +33,7 @@ func _ready() -> void:
 	
 	_anim_skip_mark = %AnimationSkip
 	_graph_restore = %GraphRestore
+	_graph_tags_placeholder = %TagPlaceholder
 	
 	_anim_speed_scale_1x = %"Scale-1x"
 	_anim_speed_scale_2x = %"Scale-2x"
@@ -55,6 +57,8 @@ func _ready() -> void:
 			= Globals.is_playmode_skip_animation()
 		_graph_restore.button_pressed \
 			= Globals.is_graph_restore()
+		_graph_tags_placeholder.button_pressed \
+			= Globals.is_graph_tags_placeholders_visible()
 		
 		var speed_scale: float \
 			= Globals.get_playmode_speed_scale()
@@ -95,7 +99,8 @@ func _on_popup_panel_show(id: int) -> void:
 	visible = _state_visible
 	
 	set_process_mode(PROCESS_MODE_INHERIT)
-	Globals.get_camera().lock_movement()
+	if not Globals.is_playmode_camera_locked():
+		Globals.get_camera().lock_movement()
 	
 	$AnimationPlayer.play("show_ui")
 
@@ -105,9 +110,7 @@ func _on_animation_finish(animation: StringName) -> void:
 	if animation == "show_ui" and !_state_visible:
 		set_process_mode(PROCESS_MODE_DISABLED)
 		
-		# This check need because settings can be
-		# opened while playmode active
-		if not Globals.is_playmode_enabled():
+		if not Globals.is_playmode_camera_locked():
 			Globals.get_camera().unlock_movement()
 		
 		visible = _state_visible
@@ -146,5 +149,12 @@ func _on_animation_skip_toggled(toggled_on: bool) -> void:
 
 func _on_graph_restore_toggled(toggled_on: bool) -> void:
 	Globals.set_graph_restore(toggled_on)
+
+
+func _on_graph_tags_show_placeholders(toggled_on: bool) -> void:
+	if toggled_on == true:
+		Globals.graph_tags_show_placeholders()
+	else:
+		Globals.graph_tags_hide_placeholders()
 
 ################################################################################

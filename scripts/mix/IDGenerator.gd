@@ -9,6 +9,11 @@ var _id: int = -1
 ################################################################################
 # PUBLIC #######################################################################
 
+func reset_id_counter() -> void:
+	_id = -1; _id_next_temp = -1
+
+################################################################################
+
 func get_last_id() -> int:
 	return _id
 
@@ -19,16 +24,13 @@ func set_last_id(id: int) -> void:
 func set_temporary(id: int) -> void:
 	_id_next_temp = id
 
+################################################################################
 
 func use_next() -> int:
 	if _id_next_temp != -1:
 		return _use_next_temp()
 	
 	_id += 1; return _id
-
-
-func reset_id() -> void:
-	_id = -1; _id_next_temp = -1
 
 func get_next() -> int:
 	return _id + 1

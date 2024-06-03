@@ -78,6 +78,7 @@ func _save_graph(path: String) -> void:
 	nodes = Globals.get_all_vertices()
 	for vertex in nodes as Array[VertexNode]:
 		vertices_data[vertex.get_id()] = [
+			vertex.get_tag(),
 			vertex.global_position.x,
 			vertex.global_position.y
 		]
@@ -129,11 +130,23 @@ func _graph_load(path: String) -> void:
 	var data_vertices: Dictionary = data["vertices"]
 	
 	for key in data_vertices.keys() as Array[String]:
-		var pos_data: Array = data_vertices[key]
-		Globals.ID.set_temporary( key.to_int() )
+		var vertex: Array = data_vertices[key]
 		
+		var tag: String = vertex[0]
+		var id: int = key.to_int()
+		
+		Globals.ID.set_temporary(id)
 		GraphManager.vertex_create(
-			Vector2(pos_data[0], pos_data[1]))
+			Vector2(vertex[1], vertex[2]))
+		
+		if tag.is_empty():
+			continue
+		
+		var instance: VertexNode \
+			= GraphManager.vertex_from_id(id)
+		
+		GraphManager.define_tag(instance, tag)
+		instance.set_tag(tag)
 	
 	# Reading edges data
 	var data_edges: Array = data["edges"]
@@ -199,16 +212,19 @@ func _validate_json_data(data: Dictionary) -> bool:
 		if not key.is_valid_int():
 			return false
 		
-		var _position = data_vertices[key]
+		var vertex = data_vertices[key]
 		
-		if not _position is Array:
+		if not vertex is Array:
 			return false
-		if (_position as Array).size() != 2:
+		if (vertex as Array).size() != 3:
 			return false
 		
-		for x in _position as Array:
-			if not x is float:
-				return false
+		if not vertex[0] is String:
+			return false
+		if not vertex[1] is float:
+			return false
+		if not vertex[2] is float:
+			return false
 	
 	# Validating edges data
 	var data_edges: Array = data["edges"]

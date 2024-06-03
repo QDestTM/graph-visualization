@@ -75,6 +75,7 @@ func vertex_delete(vertex: VertexNode) -> void:
 	_undo_redo.create_action("Remove Vertex")
 	
 	var position: Vector2 = vertex.position
+	var tag: String = vertex.get_tag()
 	var id: int = vertex.get_id()
 	
 	var is_entry: bool = vertex.is_graph_entry()
@@ -93,8 +94,14 @@ func vertex_delete(vertex: VertexNode) -> void:
 			Globals.ID.set_temporary(id)
 			GraphManager.vertex_create(position)
 			
+			var _vertex: VertexNode = vfid(id)
+			
 			if is_entry == true:
-				GraphManager.graph_entry_define( vfid(id) )
+				GraphManager.graph_entry_define(_vertex)
+			
+			if not tag.is_empty():
+				GraphManager.define_tag(_vertex, tag)
+				_vertex.set_tag(tag)
 			
 			_reconnect_edges(vertices, weights, id)
 	)
@@ -108,6 +115,7 @@ func vertex_delete_area() -> void:
 	var vertex: VertexNode = GraphManager.get_moving_vertex()
 	
 	var position: Vector2 = _vertex_move_from
+	var tag: String = vertex.get_tag()
 	var id: int = vertex.get_id()
 	
 	var is_entry: bool = vertex.is_graph_entry()
@@ -126,13 +134,52 @@ func vertex_delete_area() -> void:
 			Globals.ID.set_temporary(id)
 			GraphManager.vertex_create(position)
 			
+			var _vertex: VertexNode = vfid(id)
+			
 			if is_entry == true:
-				GraphManager.graph_entry_define( vfid(id) )
+				GraphManager.graph_entry_define(_vertex)
+			
+			if not tag.is_empty():
+				GraphManager.define_tag(_vertex, tag)
+				_vertex.set_tag(tag)
 			
 			_reconnect_edges(vertices, weights, id)
 	)
 	
 	_undo_redo.commit_action()
+
+################################################################################
+
+func vertex_set_tag(vertex: VertexNode, new_tag: String) -> void:
+	_undo_redo.create_action("Vertex Set Tag")
+	
+	var old_tag: String = vertex.get_tag()
+	var id: int = vertex.get_id()
+	
+	_undo_redo.add_do_method(
+		func() -> void:
+			var _vertex: VertexNode = vfid(id)
+			
+			if _vertex.is_tag_defined():
+				_vertex.remove_tag()
+			
+			GraphManager.define_tag(_vertex, new_tag)
+			_vertex.set_tag(new_tag)
+	)
+	_undo_redo.add_undo_method(
+		func() -> void:
+			var _vertex: VertexNode = vfid(id)
+			
+			if _vertex.is_tag_defined():
+				_vertex.remove_tag()
+			
+			if not old_tag.is_empty():
+				GraphManager.define_tag(_vertex, old_tag)
+			
+			_vertex.set_tag(old_tag)
+	)
+	
+	_undo_redo.commit_action(false)
 
 ################################################################################
 

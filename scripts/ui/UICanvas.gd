@@ -9,16 +9,18 @@ signal popup_panel_hide(id: int)
 
 var _ui_interaction_mode: Control = null
 var _ui_algorithm_player: Control = null
-var _ui_graph_control: Control = null
+var _ui_graph_control   : Control = null
 
-var _btn_open_guide: Button = null
+var _btn_open_guide   : Button = null
 var _btn_open_settings: Button = null
+var _btn_open_search  : Button = null
 
 var _popup_background: ColorRect = null
 var _current_popup_id: int = -1
 
-var _popup_id_guide: int
+var _popup_id_guide   : int
 var _popup_id_settings: int
+var _popup_id_search  : int
 
 ################################################################################
 # VIRTUAL ######################################################################
@@ -46,14 +48,17 @@ func _ready() -> void:
 	
 	_ui_interaction_mode = $"UI-ElementContainer-1/InteractionModeUI"
 	_ui_algorithm_player = $"UI-ElementContainer-2/AlgorithmPlayerUI"
-	_ui_graph_control = $"UI-ElementContainer-4/GraphControlUI"
+	_ui_graph_control    = $"UI-ElementContainer-4/GraphControlUI"
 	
-	_btn_open_guide = $"UI-ElementContainer-3/GuideOpenButton"
+	_btn_open_guide    = $"UI-ElementContainer-3/GuideOpenButton"
 	_btn_open_settings = $"UI-ElementContainer-6/SettingsOpenButton"
+	_btn_open_search   = $"UI-ElementContainer-6/SearchOpenButton"
 	
-	_popup_background = $OverlayContent/Background
-	_popup_id_guide = $OverlayContent/GuidePanel.get_instance_id()
+	_popup_background  = $OverlayContent/Background
+	
+	_popup_id_guide    = $OverlayContent/GuidePanel.get_instance_id()
 	_popup_id_settings = $OverlayContent/SettingsPanel.get_instance_id()
+	_popup_id_search   = $OverlayContent/SearchPanel.get_instance_id()
 
 ################################################################################
 # PUBLIC #######################################################################
@@ -68,19 +73,18 @@ func _popup_panel_hide(id: int) -> void:
 	_current_popup_id = -1
 	popup_panel_hide.emit(id)
 	
+	Globals.unlock_keybinds()
+	
 	_popup_background.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
 	$AnimationPlayer.play_backwards("popup_show")
 	
 	# Enabling specified interface parts
 	match id:
 		_popup_id_guide:
-			_ui_interaction_mode.set_process_mode(PROCESS_MODE_INHERIT)
-			_ui_algorithm_player.set_process_mode(PROCESS_MODE_INHERIT)
-			_ui_graph_control.set_process_mode(PROCESS_MODE_INHERIT)
-			
-			_btn_open_settings.set_process_mode(PROCESS_MODE_INHERIT)
-		
+			_on_enable_gui_request()
 		_popup_id_settings:
+			_on_enable_gui_request()
+		_popup_id_search:
 			_on_enable_gui_request()
 
 
@@ -90,6 +94,8 @@ func _popup_panel_show(id: int) -> void:
 	
 	_current_popup_id = id
 	popup_panel_show.emit(id)
+	
+	Globals.lock_keybinds()
 	
 	_popup_background.set_mouse_filter(Control.MOUSE_FILTER_STOP)
 	$AnimationPlayer.play("popup_show")
@@ -102,9 +108,18 @@ func _popup_panel_show(id: int) -> void:
 			_ui_graph_control.set_process_mode(PROCESS_MODE_DISABLED)
 			
 			_btn_open_settings.set_process_mode(PROCESS_MODE_DISABLED)
+			_btn_open_search.set_process_mode(PROCESS_MODE_DISABLED)
 		
 		_popup_id_settings:
 			_on_disable_gui_request()
+		
+		_popup_id_search:
+			_ui_interaction_mode.set_process_mode(PROCESS_MODE_DISABLED)
+			_ui_algorithm_player.set_process_mode(PROCESS_MODE_DISABLED)
+			_ui_graph_control.set_process_mode(PROCESS_MODE_DISABLED)
+			
+			_btn_open_guide.set_process_mode(PROCESS_MODE_DISABLED)
+			_btn_open_settings.set_process_mode(PROCESS_MODE_DISABLED)
 
 ################################################################################
 # SIGNAL HANDLERS ##############################################################
@@ -127,6 +142,7 @@ func _on_disable_gui_request() -> void:
 	
 	_btn_open_guide.set_process_mode(PROCESS_MODE_DISABLED)
 	_btn_open_settings.set_process_mode(PROCESS_MODE_DISABLED)
+	_btn_open_search.set_process_mode(PROCESS_MODE_DISABLED)
 
 
 func _on_enable_gui_request() -> void:
@@ -136,6 +152,7 @@ func _on_enable_gui_request() -> void:
 	
 	_btn_open_guide.set_process_mode(PROCESS_MODE_INHERIT)
 	_btn_open_settings.set_process_mode(PROCESS_MODE_INHERIT)
+	_btn_open_search.set_process_mode(PROCESS_MODE_INHERIT)
 
 ################################################################################
 
@@ -173,6 +190,13 @@ func _on_settings_open_pressed() -> void:
 		return _popup_panel_hide(_popup_id_settings)
 	
 	_popup_panel_show(_popup_id_settings)
+
+
+func _on_search_open_pressed() -> void:
+	if _current_popup_id == _popup_id_search:
+		return _popup_panel_hide(_popup_id_search)
+	
+	_popup_panel_show(_popup_id_search)
 
 ################################################################################
 

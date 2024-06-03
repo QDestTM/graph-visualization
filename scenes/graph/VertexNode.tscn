@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://ccr8nxhgiimk6"]
+[gd_scene load_steps=16 format=3 uid="uid://ccr8nxhgiimk6"]
 
 [ext_resource type="Script" path="res://scripts/graph/VertexNode.gd" id="1_1mk0k"]
 [ext_resource type="LabelSettings" uid="uid://f5aype46siqw" path="res://resources/labels/debug_label.tres" id="2_cgod6"]
 [ext_resource type="Material" uid="uid://bltdyudigaw1y" path="res://resources/materials/vertex_material.tres" id="2_dwds5"]
+[ext_resource type="StyleBox" uid="uid://co3qrj65cu8xh" path="res://resources/styles/empty_style.tres" id="4_3yyad"]
 
 [sub_resource type="Animation" id="Animation_qgnaw"]
 length = 0.001
@@ -25,6 +26,18 @@ tracks/1/path = NodePath("RectangleArea/DistanceLabel:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TagEditLine:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -101,6 +114,18 @@ tracks/1/path = NodePath("RectangleArea/DistanceLabel:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TagEditLine:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
@@ -188,7 +213,7 @@ _data = {
 font_size = 20
 
 [node name="VertexNode" type="Node2D" groups=["vertices"]]
-z_index = 2
+z_index = 3
 z_as_relative = false
 script = ExtResource("1_1mk0k")
 metadata/_edit_horizontal_guides_ = [-25.0, 25.0]
@@ -217,9 +242,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -25.0
-offset_top = 25.0
+offset_top = -45.0
 offset_right = 25.0
-offset_bottom = 42.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "0"
@@ -257,9 +282,57 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
+[node name="TagEditLine" type="LineEdit" parent="."]
+z_index = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+theme_override_colors/font_color = Color(0.087, 0.4002, 0.87, 1)
+theme_override_colors/font_selected_color = Color(0.0862745, 0.4, 0.870588, 1)
+theme_override_colors/font_uneditable_color = Color(0.0862745, 0.4, 0.870588, 1)
+theme_override_colors/font_placeholder_color = Color(0.0862745, 0.4, 0.870588, 0.352941)
+theme_override_colors/caret_color = Color(1, 0.627451, 0.815686, 1)
+theme_override_colors/selection_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = ExtResource("4_3yyad")
+theme_override_styles/focus = ExtResource("4_3yyad")
+theme_override_styles/read_only = ExtResource("4_3yyad")
+placeholder_text = "Tag"
+alignment = 1
+max_length = 6
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+caret_blink = true
+metadata/_edit_group_ = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="TagEditLine" groups=["debug_node"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0.560784, 0, 0.843137, 1)
+border_width = 2.0
+editor_only = false
+
 [node name="Center" type="Marker2D" parent="."]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finish"]
 [connection signal="gui_input" from="RectangleArea" to="." method="_on_area_input"]
 [connection signal="mouse_entered" from="RectangleArea" to="." method="_on_mouse_enter"]
 [connection signal="mouse_exited" from="RectangleArea" to="." method="_on_mouse_exit"]
+[connection signal="focus_entered" from="TagEditLine" to="." method="_on_tag_edit_focus_enter"]
+[connection signal="focus_exited" from="TagEditLine" to="." method="_on_tag_edit_focus_exit"]
+[connection signal="mouse_exited" from="TagEditLine" to="." method="_on_tag_edit_mouse_exit"]
+[connection signal="text_submitted" from="TagEditLine" to="." method="_on_tag_edit_submit"]

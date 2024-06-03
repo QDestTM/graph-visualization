@@ -10,12 +10,16 @@ var _weight: int = 0
 var _beg: VertexNode = null
 var _end: VertexNode = null
 
+var _edln_weight: LineEdit = null
+
 ################################################################################
 # VIRTUAL ######################################################################
 
 func _ready() -> void:
 	$WeightEdit/ReferenceRect.visible = Globals.is_debug_mode()
 	$WeightEdit/ConnectionsLabel.visible = Globals.is_debug_mode()
+	
+	_edln_weight = $WeightEdit
 
 ################################################################################
 # PUBLIC #######################################################################
@@ -162,14 +166,14 @@ func animate_and_free(vertex: VertexNode) -> void:
 
 ################################################################################
 
-func weight_make_readonly() -> void:
-	$WeightEdit.editable = false
-	$WeightEdit.selecting_enabled = false
+func edlns_make_readonly() -> void:
+	_edln_weight.editable = false
+	_edln_weight.selecting_enabled = false
 
 
-func weight_make_editable() -> void:
-	$WeightEdit.editable = true
-	$WeightEdit.selecting_enabled = true
+func edlns_make_editable() -> void:
+	_edln_weight.editable = true
+	_edln_weight.selecting_enabled = true
 
 ################################################################################
 
@@ -205,26 +209,26 @@ func _parse_weight_and_set(text: String) -> void:
 # SIGNAL HANDLERS ##############################################################
 
 func _on_weight_edit_submit(text: String) -> void:
-	$WeightEdit.release_focus()
+	_edln_weight.release_focus()
 	_parse_weight_and_set(text)
 
 ################################################################################
 
 func _on_weight_edit_mouse_exit() -> void:
-	$WeightEdit.release_focus()
+	_edln_weight.release_focus()
 
 
 func _on_weight_edit_focus_enter() -> void:
-	Globals.get_camera().lock_movement()
-	_parse_weight_and_set($WeightEdit.text)
+	if not Globals.is_playmode_camera_locked():
+		Globals.get_camera().lock_movement()
+	
+	_parse_weight_and_set(_edln_weight.text)
 
 
 func _on_weight_edit_focus_exit() -> void:
-	# This check need because camera unlocks
-	# in playmode after clicking on weight line edit
-	if not Globals.is_playmode_enabled():
+	if not Globals.is_playmode_camera_locked():
 		Globals.get_camera().unlock_movement()
 	
-	_parse_weight_and_set($WeightEdit.text)
+	_parse_weight_and_set(_edln_weight.text)
 
 ################################################################################
